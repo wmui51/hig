@@ -54,6 +54,10 @@ export default class NumericInput extends Component {
     variant: "line"
   };
 
+  setNumericInputRef = element => {
+    this.numericInput = element;
+  };
+
   render() {
     const {
       stylesheet,
@@ -78,7 +82,15 @@ export default class NumericInput extends Component {
         ? stylesheet(numericInputStyles, props, themeData)
         : numericInputStyles;
     };
-
+    const spinnerBehaviorProps = {
+      onClick,
+      value,
+      onChange,
+      initialValue: defaultValue,
+      step,
+      disabled
+    }
+console.log(this.numericInput);
     return (
       <ControlBehavior
         onBlur={onBlur}
@@ -104,6 +116,7 @@ export default class NumericInput extends Component {
             initialValue={defaultValue}
             step={step}
             disabled={disabled}
+            inputRef={this.numericInput || null}
           >
             {({
               onDirectChange,
@@ -147,6 +160,7 @@ export default class NumericInput extends Component {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onMouseUp={handleMouseUp}
+                  inputRef={this.setNumericInputRef}
                   {...otherProps}
                 />
               </div>
