@@ -3,11 +3,6 @@ import PropTypes from "prop-types";
 
 export default class SpinnerBehavior extends Component {
   static propTypes = {
-<<<<<<< HEAD
-=======
-    inputRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-    onClick: PropTypes.func,
->>>>>>> 0a13a9942... checking up code
     children: PropTypes.func,
     onChange: PropTypes.func,
     value: PropTypes.number,
@@ -54,7 +49,6 @@ export default class SpinnerBehavior extends Component {
     if (this.props.disabled) {
       return;
     }
-    this.props.inputRef.focus();
     this.setValue(value);
   };
 
