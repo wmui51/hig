@@ -23,6 +23,7 @@ export default class SpinnerBehavior extends Component {
     this.state = {
       value: props.initialValue
     };
+    this.timer = null;
   }
 
   onDirectChange = event => {
@@ -63,12 +64,31 @@ export default class SpinnerBehavior extends Component {
     this.updateValue(Number(this.getValue()) - this.props.step);
   };
 
+  mouseDownIncrement = event => {
+    this.timer = setInterval(() => {
+      this.increment();
+    }, 100);
+  };
+
+  mouseDownDecrement = event => {
+    this.timer = setInterval(() => {
+      this.decrement();
+    }, 100);
+  };
+
+  clearTimer = () => {
+    clearInterval(this.timer);
+  };
+
   render() {
     return this.props.children({
       onDirectChange: this.onDirectChange,
       increment: this.increment,
       decrement: this.decrement,
-      value: this.getValue()
+      value: this.getValue(),
+      mouseDownDecrement: this.mouseDownDecrement,
+      mouseDownIncrement: this.mouseDownIncrement,
+      clearTimer: this.clearTimer
     });
   }
 }

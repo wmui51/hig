@@ -109,10 +109,14 @@ export default class NumericInput extends Component {
               onDirectChange,
               increment,
               decrement,
-              value: controlledValue
+              value: controlledValue,
+              mouseDownDecrement,
+              mouseDownIncrement,
+              clearTimer
             }) => (
               <div style={{ position: "relative" }}>
                 <SpinnerPresenter
+                  clearTimer={clearTimer}
                   disabled={disabled}
                   onBlur={handleBlur}
                   onFocus={handleFocus}
@@ -122,6 +126,8 @@ export default class NumericInput extends Component {
                   onMouseUp={handleMouseUp}
                   increment={increment}
                   decrement={decrement}
+                  mouseDownDecrement={mouseDownDecrement}
+                  mouseDownIncrement={mouseDownIncrement}
                   variant={variant}
                   stylesheet={stylesheet}
                   {...otherProps}

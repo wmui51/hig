@@ -27,13 +27,16 @@ export default class SpinnerPresenter extends Component {
 
   render() {
     const {
+      clearTimer,
       disabled,
-      onMouseDown,
+      // onMouseDown,
       onMouseEnter,
       onMouseLeave,
-      onMouseUp,
+      // onMouseUp,
       increment,
       decrement,
+      mouseDownDecrement,
+      mouseDownIncrement,
       variant,
       stylesheet: customStylesheet,
       ...otherProps
@@ -99,10 +102,10 @@ export default class SpinnerPresenter extends Component {
                 <span
                   className={cx(css(styles.spinner), spinnerClassName)}
                   onClick={handleIncrementClick}
-                  onMouseDown={onMouseDown}
+                  onMouseDown={mouseDownIncrement}
                   onMouseEnter={onMouseEnter}
                   onMouseLeave={onMouseLeave}
-                  onMouseUp={onMouseUp}
+                  onMouseUp={clearTimer}
                   role="button"
                   tabIndex="-1"
                   onKeyDown={handleIncrementKeyDown}
@@ -114,10 +117,10 @@ export default class SpinnerPresenter extends Component {
                 <span
                   className={cx(css(styles.spinner), spinnerClassName)}
                   onClick={handleDecrementClick}
-                  onMouseDown={onMouseDown}
+                  onMouseDown={mouseDownDecrement}
                   onMouseEnter={onMouseEnter}
                   onMouseLeave={onMouseLeave}
-                  onMouseUp={onMouseUp}
+                  onMouseUp={clearTimer}
                   role="button"
                   tabIndex="-1"
                   onKeyDown={handleDecrementKeyDown}
