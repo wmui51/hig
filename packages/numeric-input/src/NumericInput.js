@@ -78,6 +78,7 @@ export default class NumericInput extends Component {
         ? stylesheet(numericInputStyles, props, themeData)
         : numericInputStyles;
     };
+
     return (
       <ControlBehavior
         onBlur={onBlur}
