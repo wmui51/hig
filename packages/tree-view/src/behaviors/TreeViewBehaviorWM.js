@@ -87,7 +87,7 @@ export default class TreeViewBehaviorWM extends Component {
       this.props.treeViewRef(element);
     }
 
-    console.log('set tree view ref');
+    // conditional check if there's dataObj
     this.setState({
       treeItemArray: 
       buildTreeItemIdArray(
@@ -105,11 +105,23 @@ export default class TreeViewBehaviorWM extends Component {
     return this.state.activeTreeItemIndex;
   };
 
+  setTreeItemArray = treeItemArray => {
+    this.setState({treeItemArray});
+  }
+
   /* getPreviousEvent = () => this.state.previousEvent;
 
   setPreviousEvent = previousEvent => {
     this.setState({ previousEvent });
   }; */
+
+  handleClick = event => {
+    if (this.props.onClick) {
+      this.props.onClick(event);
+    }
+
+    console.log('handle click');
+  }
 
   handleFocus = event => {
     if (this.props.onFocus) {
@@ -127,8 +139,6 @@ export default class TreeViewBehaviorWM extends Component {
     if (this.props.onKeyDown) {
       onKeyDown(event);
     }
-
-    console.log('on key down');
 
     switch (event.keyCode) {
       // Arrow Down
@@ -173,16 +183,19 @@ export default class TreeViewBehaviorWM extends Component {
       getActiveTreeItemId,
       getActiveTreeItemIndex,
       handleBlur,
+      handleClick,
       handleFocus,
       handleKeyDown,
       setTreeViewRef,
       treeViewRef
     } = this;
-
+console.log(this.state);
+console.log(this.treeViewRef);
     return this.props.children({
       getActiveTreeItemId,
       getActiveTreeItemIndex,
       handleBlur,
+      handleClick,
       handleFocus,
       handleKeyDown,
       setTreeViewRef,

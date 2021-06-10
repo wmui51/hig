@@ -58,9 +58,9 @@ export default class TreeView extends Component {
               getActiveTreeItemId,
               getActiveTreeItemIndex,
               handleBlur: handleMenuBehaviorBlur,
+              handleClick,
               handleFocus: handleMenuBehaviorFocus,
               handleKeyDown,
-              handleClick,
               setTreeViewRef,
               treeViewRef,
             }) => (
@@ -72,9 +72,9 @@ export default class TreeView extends Component {
                 getActiveTreeItemIndex={getActiveTreeItemIndex}
                 guidelines={guidelines}
                 onBlur={handleMenuBehaviorBlur}
+                onClick={handleClick}
                 onFocus={handleMenuBehaviorFocus}
                 onKeyDown={handleKeyDown}
-                onClick={handleClick}
                 setTreeViewRef={setTreeViewRef}
                 stylesheet={stylesheet}
                 treeViewRef={treeViewRef}

@@ -1,5 +1,11 @@
 import React from "react";
 import { TreeItem } from "../index";
+import {
+  AddFolder24,
+  Folder24,
+  AddFolder16,
+  Folder16
+} from "@hig/icons";
 
 const FileTreeCollection = {
   id: 1,
@@ -106,6 +112,7 @@ export default [
     getProps: () => ({
       guidelines: false,
       indicator: "caret",
+      onClick: () => {console.log('stories on click')},
       test: "WM",
       children: [
         <TreeItem
@@ -115,9 +122,9 @@ export default [
           label="Tree Item 0"
         >
           <TreeItem label="Tree Item 1" test="WM" id="tree-item-1">
-            <TreeItem label="Tree Item 2" id="tree-item-2">
+            <TreeItem label="Tree Item 2" test="WM" id="tree-item-2" icon={<Folder16 />}>
               <TreeItem test="WM" label="Tree Item 3" id="tree-item-3">
-                <TreeItem test="WM" label="Tree Item 4" id="tree-item-4" />
+                <TreeItem test="WM" label="Tree Item 4" id="tree-item-4" icon={<AddFolder16 />} />
                 <TreeItem test="WM" label="Tree Item 5" id="tree-item-5" />
                 <TreeItem test="WM" label="Tree Item 6" id="tree-item-6" />
               </TreeItem>

@@ -14,6 +14,10 @@ export default class TreeItem extends Component {
      * Content of the Option
      */
     children: PropTypes.node,
+    /**
+     * Presentational icon
+     */
+    icon: PropTypes.node,
     id: PropTypes.string.required,
     /**
      * Labels the TreeItem, this is rendered before all children
@@ -28,6 +32,7 @@ export default class TreeItem extends Component {
   render() {
     const {
       children,
+      icon,
       id,
       label,
       stylesheet,
@@ -56,6 +61,7 @@ export default class TreeItem extends Component {
         }) => (
           <TreeItemPresenter
             {...otherProps}
+            icon={icon}
             id={id}
             label={label}
             onClick={handleClick}

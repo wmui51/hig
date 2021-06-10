@@ -14,17 +14,25 @@
 // ADD TO THEME-DATA
 // MEDIUM DENSITY = 40PX TOTAL HEIGHT
 // HIGHT DENSITY = 24PX TOTAL HEIGHT
+// indicator wrapper - 16/12 accordion.header.indicatorSize
 
 export default function stylesheet(props, themeData) {
-/* console.log('stylesheet');
+console.log('stylesheet');
 console.log(props);
-console.log(themeData); */
   const {
     alternateBg,
     guidelines,
+    indicator,
     selected,
     stylesheet: customStylesheet
   } = props;
+  // temp until we get this into theme data
+  const isMediumDensity = themeData['treeView.row.paddingVertical'] === `8px`
+  const itemHeight = isMediumDensity ? `24px` : `16px`;
+  const bgHeight = isMediumDensity ? `160px` : `96px`;
+  const guideLineVerticalOffsetLeft = isMediumDensity ? `0` : `-3px`;
+  const guideLineHorizontalOffsetTop = isMediumDensity ? `9px` : `1px`;
+  const operatorPadding = isMediumDensity ? `20px` : `19px`;
   const styles = {
     higTreeViewWrapper: {
       ...(alternateBg
@@ -40,7 +48,7 @@ console.log(themeData); */
               ${themeData['colorScheme.surface.level100']} 75%,
               ${themeData['colorScheme.surface.level100']} 100%
             )`,
-            backgroundSize: `72px 72px`
+            backgroundSize: `${bgHeight} ${bgHeight}`
           }
         : {}
       ),
@@ -53,15 +61,23 @@ console.log(themeData); */
       fontWeight: themeData[`treeView.item.fontWeight`],
       listStyle: `none`,
       margin: 0,
+      outline: 0,
       padding: 0,
-      "& ul": {
-        listStyle: `none`,
-        paddingLeft: `4px`,
-        "& li": {
-          overflow: `hidden`,
-          width: `100%`,
+      // "& ul": {
+        // listStyle: `none`,
+        // paddingLeft: `4px`,
+        "& > li": {
+          "& > div": {
+            "&:first-child": {
+              "&:last-child": {
+                paddingLeft: 0
+              }
+            }
+          },
+          // overflow: `hidden`,
+          // width: `100%`,
           "&::before": {
-            ...(guidelines ? { borderTop: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
+            /* ...(guidelines ? { borderTop: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
             display: `inline-block`,
             content: `""`,
             left: 0,
@@ -69,30 +85,33 @@ console.log(themeData); */
             position: `absolute`,
             top: `7px`,
             transform: `translateY(10px)`,
-            width: themeData['treeView.row.paddingHorizontal']
+            width: themeData['treeView.row.paddingHorizontal'] */
+            border: `none`
           },
           "&::after": {
-            ...(guidelines ? { borderLeft: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
+            border: `none`
+            /* ...(guidelines ? { borderLeft: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
             display: `inline-block`,
             content: `""`,
             height: `100%`,
             left: 0,
             position: `absolute`,
             top: `0`,
-            width: `20px`
+            width: `20px` */
           },
         },
-        "& li:last-child": {
+        /* "& li:last-child": {
           "&::after": {
             top: `-9px`,
             height: `24px`
           }
-        }
-      }
+        } */
+      // }
     },
     higTreeItem: {
+      // height: itemHeight,
       margin: 0,
-      padding: `${themeData['treeView.row.paddingVertical']} ${themeData['treeView.row.paddingHorizontal']}`,
+      // padding: `${themeData['treeView.row.paddingVertical']} ${themeData['treeView.row.paddingHorizontal']}`,
       position: `relative`,
       "& [aria-expanded='true']": {
         padding: 0
@@ -100,19 +119,129 @@ console.log(themeData); */
       "& [aria-expanded='false']": {
         padding: 0
       },
-      "& > span": {
-        display: `block`,
-        maxWidth: `calc(100% - 10px)`,
-        padding: `${themeData['treeView.row.paddingVertical']} ${themeData['treeView.row.paddingHorizontal']}`,
-        overflow: `hidden`,
-        textOverflow: `ellipsis`,
-        whiteSpace: `nowrap`,
-        ...(selected ? { background: themeData[`colorScheme.background.on.default`] } : {})
+      "&::before": {
+        ...(guidelines ? { borderTop: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
+        display: `inline-block`,
+        content: `""`,
+        left: 0,
+        margin: 0,
+        position: `absolute`,
+        top: guideLineHorizontalOffsetTop,
+        transform: `translateY(10px)`,
+        width: themeData['treeView.row.paddingHorizontal']
+      },
+      "&::after": {
+        ...(guidelines ? { borderLeft: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
+        display: `inline-block`,
+        content: `""`,
+        height: `100%`,
+        left: guideLineVerticalOffsetLeft,
+        position: `absolute`,
+        top: `0`,
+        width: `20px`
+      },
+      "&:first-child": {
+        "&::after": {
+          ...(isMediumDensity 
+            ? { top: `-10px`, height: `calc(100% + 10px)` }
+            : { top: `-3px`, height: `100%` } 
+          )
+        }
+      },
+      "&:last-child": {
+        "&::after": {
+          ...(isMediumDensity 
+            ? { top: `-9px`, height: `24px` }
+            : { top: `-3px`, height: `15px` } 
+          )
+        }
       }
     },
     higTreeItemContentWrapper: {
+      alignItems: `center`,
       display: `inline-flex`,
-      ...(selected ? { background: themeData[`colorScheme.background.on.default`] } : {})
+      paddingLeft: themeData['treeView.row.paddingHorizontal'], 
+      ...(selected ? { background: themeData[`colorScheme.background.on.default`] } : {}),
+      "& > svg": {
+        marginRight: themeData[`treeView.icon.marginRight`]
+      }
+    },
+    /* higTreeItemSubTreeViewWrapper: {
+      padding: `0 0 0 15px`
+    }, */
+    higTreeItemSubTreeView: {
+      listStyle: `none`,
+      margin: 0,
+      padding: indicator === `caret` 
+        ? `0 0 0 15px`
+        : `0 0 0 ${operatorPadding}`
+    },
+    higTreeItemSubTreeViewLabelWrapper: {
+      display: `flex`,
+      height: itemHeight,
+      lineHeight: itemHeight,
+      maxWidth: `calc(100% - 10px)`,
+      padding: `${themeData['treeView.row.paddingVertical']} ${themeData['treeView.row.paddingHorizontal']}`,
+      overflow: `hidden`,
+      textOverflow: `ellipsis`,
+      whiteSpace: `nowrap`
+    },
+    higTreeItemSubTreeViewLabelContentWrapper: {
+      alignItems: `center`,
+      display: `flex`,
+      ...(selected ? { background: themeData[`colorScheme.background.on.default`] } : {}),
+      "& > svg": {
+        marginRight: themeData[`treeView.icon.marginRight`]
+      }
+    },
+    higTreeItemSubTreeViewIndicatorWrapper: {
+      alignItems: `center`,
+      display: `flex`,
+      height: itemHeight,
+      justifyContent: `center`,
+      width: itemHeight
+    },
+    higTreeItemSubTreeItem: {
+      height: itemHeight,
+      padding: `${themeData['treeView.row.paddingVertical']} ${themeData['treeView.row.paddingHorizontal']}`,
+      position: `relative`,
+      "&::before": {
+        ...(guidelines ? { borderTop: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
+        display: `inline-block`,
+        content: `""`,
+        left: 0,
+        margin: 0,
+        position: `absolute`,
+        top: guideLineHorizontalOffsetTop,
+        transform: `translateY(10px)`,
+        width: themeData['treeView.row.paddingHorizontal']
+      },
+      "&::after": {
+        ...(guidelines ? { borderLeft: `1px dashed ${themeData['treeView.guideLine.backgroundColor']}` } : {}),
+        display: `inline-block`,
+        content: `""`,
+        height: `100%`,
+        left: guideLineVerticalOffsetLeft,
+        position: `absolute`,
+        top: `0`,
+        width: `20px`
+      },
+      "&:first-child": {
+        "&::after": {
+          ...(isMediumDensity 
+            ? { top: `-10px`, height: `calc(100% + 10px)` }
+            : { top: `-3px`, height: `100%` } 
+          )
+        }
+      },
+      "&:last-child": {
+        "&::after": {
+          ...(isMediumDensity 
+            ? { top: `-9px`, height: `24px` }
+            : { top: `-3px`, height: `15px` } 
+          )
+        }
+      }
     }
   };
 

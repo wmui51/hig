@@ -17,16 +17,17 @@ import stylesheet from "./stylesheet";
 import { AVAILABLE_ROLES } from "../constants";
 
 function SubTreeItem(props) {
-  const { id, label, themeData } = props;
+  const { icon, id, label, themeData } = props;
   const styles = stylesheet(props, themeData);
 
   return (
     <li
-      className={css(styles.higTreeItem)}
+      className={css(styles.higTreeItemSubTreeItem)}
       id={id}
       role="treeitem"
     >
       <div className={css(styles.higTreeItemContentWrapper)}>
+        {icon}
         {label}
       </div>
     </li>
@@ -38,13 +39,20 @@ function NestedSubTreeItem(props) {
     children,
     getActiveTreeItemId,
     getActiveTreeItemIndex,
+    guidelines,
+    icon,
     id,
     indicator,
     label,
     themeData
   } = props;
   const styles = stylesheet(props, themeData);
-  const clonedChildren = React.cloneElement(children, { getActiveTreeItemId, getActiveTreeItemIndex, indicator });
+  const clonedChildren = React.cloneElement(children, {
+    getActiveTreeItemId,
+    getActiveTreeItemIndex,
+    guidelines,
+    indicator
+  });
   const IconIndicator = indicator === 'operator' ? OperatorPlusSUI : CaretRightMUI;
 
   return (
@@ -54,9 +62,15 @@ function NestedSubTreeItem(props) {
       id={id}
       role="treeitem"
     >
-      <span><IconIndicator /> {label}</span>
-      <div>
-        <ul role="group">
+      <div className={css(styles.higTreeItemSubTreeViewLabelWrapper)}>
+        <div className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}>
+          <IconIndicator />
+          {icon}
+          <span>{label}</span>
+        </div>
+      </div>
+      <div className={css(styles.higTreeItemSubTreeViewWrapper)}>
+        <ul className={css(styles.higTreeItemSubTreeView)} role="group">
           {clonedChildren}
         </ul>
       </div>
@@ -69,14 +83,24 @@ function NestedSubTreeItemGroup(props) {
     children,
     getActiveTreeItemId,
     getActiveTreeItemIndex,
+    guidelines,
+    icon,
     id,
     indicator,
     label,
-    selected,
     themeData
   } = props;
   const styles = stylesheet(props, themeData);
-  const clonedChildren = React.Children.map(children, (child => React.cloneElement(child, {getActiveTreeItemId, getActiveTreeItemIndex, indicator, selected: getActiveTreeItemId() === child.props.id})));
+  const clonedChildren = React.Children.map(children, (child => React.cloneElement(
+    child,
+    {
+      getActiveTreeItemId,
+      getActiveTreeItemIndex,
+      guidelines,
+      indicator,
+      selected: getActiveTreeItemId() === child.props.id
+    }
+  )));
   const IconIndicator = indicator === 'operator' ? OperatorPlusSUI : CaretRightMUI;
 
   return (
@@ -86,9 +110,15 @@ function NestedSubTreeItemGroup(props) {
       id={id}
       role="treeitem"
     >
-      <span><IconIndicator /> {label}</span>
-      <div>
-        <ul role="group">
+      <div className={css(styles.higTreeItemSubTreeViewLabelWrapper)}>
+        <div className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}>
+          <IconIndicator />
+          {icon}
+          <span>{label}</span>
+        </div>
+      </div>
+      <div className={css(styles.higTreeItemSubTreeViewWrapper)}>
+        <ul className={css(styles.higTreeItemSubTreeView)} role="group">
           {clonedChildren.map((child, index) => {
             // if it has a label then the children array should be of TreeItems
             if (child.props
