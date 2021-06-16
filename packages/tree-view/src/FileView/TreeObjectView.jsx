@@ -1,154 +1,12 @@
 import React, { Component } from "react";
 
 import PropTypes from "prop-types";
-import { css, cx } from "emotion";
 import { ThemeContext } from "@hig/theme-context";
 import TreeItemBehavior from "../behaviors/TreeItemBehavior";
 
-import {
-  CaretDownMUI,
-  CaretDownSUI,
-  OperatorMinusSUI,
-  OperatorMinusXsUI,
-  OperatorPlusSUI,
-  OperatorPlusXsUI,
-} from "@hig/icons";
-
 import stylesheet from "../presenters/stylesheet";
 
-function SubTreeItem(props) {
-  const {
-    treeItem,
-    treeItem: {
-      children,
-      id,
-      meta: { label, icon },
-      payload: {
-        indicator,
-        getActiveTreeItemId,
-        getActiveTreeItemIndex,
-        guidelines,
-      },
-    },
-    themeData,
-    onClick,
-  } = props;
-
-  const styleTreeItem = {
-    children,
-    id,
-    label,
-    indicator,
-    themeData,
-    getActiveTreeItemId,
-    getActiveTreeItemIndex,
-    guidelines,
-    selected: getActiveTreeItemId() === id,
-  };
-  const styles = stylesheet(styleTreeItem, themeData);
-  return (
-    <li
-      className={css(styles.higTreeItemSubTreeItem)}
-      id={id}
-      role="treeitem"
-      onClick={(event) => onClick(event, treeItem)}
-    >
-      <div className={css(styles.higTreeItemContentWrapper)}>
-        {icon}
-        {label}
-      </div>
-    </li>
-  );
-}
-
-function NestedSubTreeItem(props) {
-  const {
-    treeItem,
-    treeItem: {
-      children,
-      id,
-      meta: { label, icon },
-      payload,
-      payload: {
-        indicator,
-        getActiveTreeItemId,
-        getActiveTreeItemIndex,
-        guidelines,
-      },
-    },
-    density,
-    themeData,
-    onClick,
-    onFocus,
-    onMouseEnter,
-    onMouseLeave,
-  } = props;
-
-  const styleTreeItem = {
-    children,
-    id,
-    label,
-    indicator,
-    themeData,
-    getActiveTreeItemId,
-    getActiveTreeItemIndex,
-    guidelines,
-    selected: getActiveTreeItemId() === id,
-  };
-
-  const styles = stylesheet(styleTreeItem, themeData);
-  const OperatorMinusIcon =
-    density === "medium-density" ? OperatorMinusSUI : OperatorMinusXsUI;
-  const CaretDownIcon =
-    density === "medium-density" ? CaretDownMUI : CaretDownSUI;
-  const IconIndicator =
-    indicator === "operator" ? OperatorMinusIcon : CaretDownIcon;
-  return (
-    <li
-      aria-expanded="true"
-      className={css(styles.higTreeItem)}
-      id={id}
-      role="treeitem"
-    >
-      <div className={css(styles.higTreeItemSubTreeViewLabelWrapper)}>
-        <div
-          className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}
-          onClick={(event) => onClick(event, treeItem)}
-        >
-          <IconIndicator />
-          {icon}
-          <span>{label}</span>
-        </div>
-      </div>
-      <div className={css(styles.higTreeItemSubTreeViewWrapper)}>
-        <ul className={css(styles.higTreeItemSubTreeView)} role="group">
-          {children.map((child) => {
-            return child.children ? (
-              <NestedSubTreeItem
-                treeItem={{ ...child, payload }}
-                themeData={themeData}
-                density={density}
-                onClick={onClick}
-                onFocus={onFocus}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-              />
-            ) : (
-              <SubTreeItem
-                treeItem={{ ...child, payload }}
-                themeData={themeData}
-                onClick={onClick}
-                onFocus={onFocus}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-              />
-            );
-          })}
-        </ul>
-      </div>
-    </li>
-  );
-}
+import { NestedSubTreeItem } from "./NestedSubTreeItem";
 
 class TreeObjectView extends Component {
   render() {
@@ -156,15 +14,29 @@ class TreeObjectView extends Component {
       tree: {
         id,
         payload,
-        payload: { getActiveTreeItemId },
+        payload: { getActiveTreeItemId, getKeyboardOpenId, setKeyboardOpenId },
+        meta: { collapsed },
+        defaultCollapsed,
       },
       ...otherProps
     } = this.props;
     const { onFocus, onMouseDown, onMouseLeave, onMouseUp } = otherProps;
 
     return (
-      <TreeItemBehavior {...otherProps} id={id} payload={payload}>
-        {({ handleClick, handleMouseEnter, handleMouseLeave }) => (
+      <TreeItemBehavior
+        {...otherProps}
+        id={id}
+        payload={payload}
+        collapsed={collapsed}
+        defaultCollapsed={true}
+      >
+        {({
+          getIsCollapsed,
+          handleClick,
+          handleMouseEnter,
+          handleMouseLeave,
+          setIsCollapsed,
+        }) => (
           <ThemeContext.Consumer>
             {({ resolvedRoles, metadata }) => {
               return (
@@ -178,6 +50,12 @@ class TreeObjectView extends Component {
                   onMouseLeave={handleMouseLeave}
                   selected={getActiveTreeItemId() === id}
                   stylesheet={stylesheet}
+                  collapsed={getIsCollapsed()}
+                  getIsCollapsed={getIsCollapsed}
+                  getKeyboardOpenId={getKeyboardOpenId}
+                  keyboardOpenId={getKeyboardOpenId()}
+                  setIsCollapsed={setIsCollapsed}
+                  setKeyboardOpenId={setKeyboardOpenId}
                 />
               );
             }}

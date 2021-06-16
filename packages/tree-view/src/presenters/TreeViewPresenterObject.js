@@ -60,7 +60,12 @@ export default class TreeViewPresenterObject extends Component {
       ...tree,
       payload,
     };
-    return <TreeObjectView tree={appendPayload} />;
+    return (
+      <TreeObjectView
+        tree={appendPayload}
+        keyboardOpenId={payload.getKeyboardOpenId()}
+      />
+    );
   }
 
   render() {
@@ -71,6 +76,11 @@ export default class TreeViewPresenterObject extends Component {
       setTreeViewRef,
       stylesheet: customStylesheet,
       treeNode,
+      getKeyboardOpenId,
+      getTreeItemArray,
+      setActiveTreeItemId,
+      setActiveTreeItemIndex,
+      setKeyboardOpenId,
       ...otherProps
     } = this.props;
 
@@ -109,6 +119,11 @@ export default class TreeViewPresenterObject extends Component {
                   indicator,
                   stylesheet,
                   onClick,
+                  getKeyboardOpenId,
+                  getTreeItemArray,
+                  setActiveTreeItemId,
+                  setActiveTreeItemIndex,
+                  setKeyboardOpenId,
                   ...otherProps,
                 })}
               </ul>
