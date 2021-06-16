@@ -30,6 +30,7 @@ export function SubTreeItem(props) {
         getActiveTreeItemIndex,
         guidelines,
         getTreeItemArray,
+        setKeyboardOpenId,
       },
     },
     themeData,
@@ -54,10 +55,16 @@ export function SubTreeItem(props) {
       id={id}
       role="treeitem"
       onClick={(event) => onClick(event, treeItem)}
-      onKeyDown={() => {
-        treeItem.meta.collapsed = !treeItem.meta.collapsed;
+      onKeyDown={(event) => {
+        console.log("event.keyCode", event.keyCode);
+        if (event.keyCode === 13 || event.keyCode === 32) {
+          treeItem.meta.collapsed = !treeItem.meta.collapsed;
+        }
+        if (event.keyCode === 38 || event.keyCode === 40) {
+          setKeyboardOpenId(getActiveTreeItemId());
+        }
       }}
-      tabIndex={getTreeItemArray() ? getTreeItemArray().indexOf(id) : -1}
+      tabIndex={-1}
     >
       <div className={css(styles.higTreeItemContentWrapper)}>
         {icon}
@@ -81,12 +88,20 @@ export function NestedSubTreeItem(props) {
         getActiveTreeItemIndex,
         guidelines,
         getTreeItemArray,
+        setKeyboardOpenId,
       },
     },
     density,
     themeData,
     onClick,
   } = props;
+
+  if (getActiveTreeItemId() === id) {
+    console.log(
+      "getTreeItemArray",
+      getTreeItemArray().indexOf(getActiveTreeItemIndex())
+    );
+  }
 
   const styleTreeItem = {
     children,
@@ -118,10 +133,15 @@ export function NestedSubTreeItem(props) {
         <div
           className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}
           onClick={(event) => onClick(event, treeItem)}
-          onKeyDown={() => {
-            treeItem.meta.collapsed = !treeItem.meta.collapsed;
+          onKeyDown={(event) => {
+            if (event.keyCode === 13 || event.keyCode === 32) {
+              treeItem.meta.collapsed = !treeItem.meta.collapsed;
+            }
+            if (event.keyCode === 38 || event.keyCode === 40) {
+              setKeyboardOpenId(getActiveTreeItemId());
+            }
           }}
-          tabIndex={getTreeItemArray() ? getTreeItemArray().indexOf(id) : -1}
+          tabIndex={-1}
         >
           <IconIndicatorPresenter
             collapsed={collapsed}
