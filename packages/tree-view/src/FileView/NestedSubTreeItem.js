@@ -29,6 +29,7 @@ export function SubTreeItem(props) {
         getActiveTreeItemId,
         getActiveTreeItemIndex,
         guidelines,
+        getTreeItemArray,
       },
     },
     themeData,
@@ -53,6 +54,10 @@ export function SubTreeItem(props) {
       id={id}
       role="treeitem"
       onClick={(event) => onClick(event, treeItem)}
+      onKeyDown={() => {
+        treeItem.meta.collapsed = !treeItem.meta.collapsed;
+      }}
+      tabIndex={getTreeItemArray() ? getTreeItemArray().indexOf(id) : -1}
     >
       <div className={css(styles.higTreeItemContentWrapper)}>
         {icon}
@@ -75,6 +80,7 @@ export function NestedSubTreeItem(props) {
         getActiveTreeItemId,
         getActiveTreeItemIndex,
         guidelines,
+        getTreeItemArray,
       },
     },
     density,
@@ -112,6 +118,10 @@ export function NestedSubTreeItem(props) {
         <div
           className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}
           onClick={(event) => onClick(event, treeItem)}
+          onKeyDown={() => {
+            treeItem.meta.collapsed = !treeItem.meta.collapsed;
+          }}
+          tabIndex={getTreeItemArray() ? getTreeItemArray().indexOf(id) : -1}
         >
           <IconIndicatorPresenter
             collapsed={collapsed}

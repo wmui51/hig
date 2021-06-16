@@ -3,14 +3,6 @@ import { NestedSubTreeItem } from "./NestedSubTreeItem";
 import stylesheet from "../presenters/stylesheet";
 
 class TreeObjectRender extends Component {
-  componentDidUpdate({ keyboardOpenId: previousKeyboardOpenId }) {
-    const { id, keyboardOpenId } = this.props;
-    if (keyboardOpenId === id && keyboardOpenId !== previousKeyboardOpenId) {
-      this.props.treeItem.meta.collapsed = !this.props.treeItem.meta.collapsed;
-      this.props.setIsCollapsed(this.props.treeItem.meta.collapsed);
-      this.props.setKeyboardOpenId("");
-    }
-  }
   render() {
     const {
       treeItem,
