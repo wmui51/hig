@@ -91,6 +91,7 @@ export default class TreeViewBehaviorRR extends Component {
   };
 
   setTreeItemArray = (objectArray) => {
+    console.log("were setting the item array");
     this.setState({ treeItemArray: [...objectArray] });
   };
 
@@ -145,9 +146,10 @@ export default class TreeViewBehaviorRR extends Component {
       this.getTreeItemArray().length !== domNodeList.length
         ? buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
         : this.getTreeItemArray();
+
     const lowerLimit = 0;
     const upperLimit = treeItemArrayControl.length - 1;
-
+    console.log("this.getTreeItemArray()", this.getTreeItemArray());
     switch (event.keyCode) {
       // Arrow Down
       case 40: {

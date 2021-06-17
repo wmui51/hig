@@ -113,13 +113,6 @@ export class NestedSubTreeItem extends Component {
       onClick,
     } = this.props;
 
-    if (getActiveTreeItemId() === id) {
-      console.log(
-        "getTreeItemArray",
-        getTreeItemArray().indexOf(getActiveTreeItemIndex())
-      );
-    }
-
     const styleTreeItem = {
       children,
       id,

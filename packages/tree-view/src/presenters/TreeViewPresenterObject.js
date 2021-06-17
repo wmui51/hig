@@ -22,6 +22,7 @@ export default class TreeViewPresenterObject extends Component {
   };
 
   componentDidMount() {
+    console.log("Im mounted");
     this.getTreeItemArray(this.props.treeNode);
     this.props.setTreeItemArray(objectArray);
   }
@@ -34,6 +35,29 @@ export default class TreeViewPresenterObject extends Component {
         this.getTreeItemArray(child);
       });
     }
+  }
+
+  componentDidUpdate() {
+    const domNodeList = this.props.treeViewRef.querySelectorAll("li");
+
+    const treeItemArrayControl =
+      this.props.getTreeItemArray().length !== domNodeList.length
+        ? this.buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
+        : this.props.getTreeItemArray();
+
+    if (this.props.getTreeItemArray().length !== domNodeList.length) {
+      this.props.setTreeItemArray(treeItemArrayControl);
+    }
+  }
+
+  buildTreeItemIdArray(list) {
+    const ids = [];
+
+    list.map((item) => {
+      ids.push(item.id);
+    });
+
+    return ids;
   }
 
   getTreeObject(collection) {
@@ -81,6 +105,11 @@ export default class TreeViewPresenterObject extends Component {
       setActiveTreeItemId,
       setActiveTreeItemIndex,
       setKeyboardOpenId,
+      indicator,
+      getActiveTreeItemId,
+      getActiveTreeItemIndex,
+      setTreeItemArray,
+      treeViewRef,
       ...otherProps
     } = this.props;
 
@@ -124,6 +153,7 @@ export default class TreeViewPresenterObject extends Component {
                   setActiveTreeItemId,
                   setActiveTreeItemIndex,
                   setKeyboardOpenId,
+                  setTreeItemArray,
                   ...otherProps,
                 })}
               </ul>
