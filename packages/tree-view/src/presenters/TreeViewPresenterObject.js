@@ -26,6 +26,19 @@ export default class TreeViewPresenterObject extends Component {
     this.props.setTreeItemArray(objectArray);
   }
 
+  componentDidUpdate() {
+    const domNodeList = this.props.treeViewRef.querySelectorAll("li");
+
+    const treeItemArrayControl =
+      this.props.getTreeItemArray().length !== domNodeList.length
+        ? this.buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
+        : this.props.getTreeItemArray();
+
+    if (this.props.getTreeItemArray().length !== domNodeList.length) {
+      this.props.setTreeItemArray(treeItemArrayControl);
+    }
+  }
+
   getTreeItemArray(collection) {
     objectArray.push(collection.id);
 
@@ -36,24 +49,11 @@ export default class TreeViewPresenterObject extends Component {
     }
   }
 
-  componentDidUpdate() {
-    const domNodeList = this.props.treeViewRef.querySelectorAll("li");
-
-    const treeItemArrayControl =
-      this.props.getTreeItemArray().length !== domNodeList.length
-        ? this.buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
-        : this.props.getTreeItemArray();
-
-    if (this.props.getTreeItemArray().length !== domNodeList.length) {
-      // this.props.setTreeItemArray(treeItemArrayControl);
-    }
-  }
-
   buildTreeItemIdArray(list) {
     const ids = [];
 
     list.map((item) => {
-      ids.push(item.id);
+      ids.push(Number(item.id));
     });
 
     return ids;
