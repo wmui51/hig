@@ -45,7 +45,7 @@ export default class TreeViewPresenterObject extends Component {
         : this.props.getTreeItemArray();
 
     if (this.props.getTreeItemArray().length !== domNodeList.length) {
-      this.props.setTreeItemArray(treeItemArrayControl);
+      // this.props.setTreeItemArray(treeItemArrayControl);
     }
   }
 

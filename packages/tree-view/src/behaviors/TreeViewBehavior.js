@@ -148,7 +148,7 @@ export default class TreeViewBehaviorRR extends Component {
 
     const lowerLimit = 0;
     const upperLimit = treeItemArrayControl.length - 1;
-    console.log("this.getTreeItemArray()", this.getTreeItemArray());
+
     switch (event.keyCode) {
       // Arrow Down
       case 40: {
