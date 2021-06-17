@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { css, cx } from "emotion";
 
-import SubTreeViewObjectPresenter from "./SubTreeViewObjectPresenter";
+// import SubTreeViewObjectPresenter from "./SubTreeViewObjectPresenter";
+import SubTreeViewCombined from "./SubTreeViewCombined";
 import IconIndicatorPresenter from "../presenters/IconIndicatorPresenter";
 
 import {
@@ -42,8 +43,6 @@ export class SubTreeItem extends Component {
           getActiveTreeItemId,
           getActiveTreeItemIndex,
           guidelines,
-          getTreeItemArray,
-          setKeyboardOpenId,
         },
       },
       themeData,
@@ -68,6 +67,7 @@ export class SubTreeItem extends Component {
         id={id}
         role="treeitem"
         onClick={(event) => onClick(event, treeItem)}
+        key={id}
       >
         <div className={css(styles.higTreeItemContentWrapper)}>
           {icon}
@@ -104,8 +104,6 @@ export class NestedSubTreeItem extends Component {
           getActiveTreeItemId,
           getActiveTreeItemIndex,
           guidelines,
-          getTreeItemArray,
-          setKeyboardOpenId,
         },
       },
       density,
@@ -138,6 +136,7 @@ export class NestedSubTreeItem extends Component {
         className={css(styles.higTreeItem)}
         id={id}
         role="treeitem"
+        key={id}
       >
         <div className={css(styles.higTreeItemSubTreeViewLabelWrapper)}>
           <div
@@ -153,7 +152,7 @@ export class NestedSubTreeItem extends Component {
             <span>{label}</span>
           </div>
         </div>
-        <SubTreeViewObjectPresenter {...this.props} />
+        <SubTreeViewCombined {...this.props} isObject={true} />
       </li>
     );
   }

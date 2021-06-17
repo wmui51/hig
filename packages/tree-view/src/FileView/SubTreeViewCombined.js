@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { css, cx } from "emotion";
 
 import { NestedSubTreeItem, SubTreeItem } from "./NestedSubTreeItem";
+import TreeItem from "../TreeItem";
 
 import stylesheet from "../presenters/stylesheet";
 
@@ -15,7 +16,7 @@ const collapseStatus = {
   EXPANDED: "expanded",
 };
 
-export default class SubTreeViewPresenter extends Component {
+export default class SubTreeViewObjectPresenter extends Component {
   constructor(props) {
     super(props);
 
@@ -125,20 +126,12 @@ export default class SubTreeViewPresenter extends Component {
   afterCollapsed = () => this.setState({ status: collapseStatus.COLLAPSED });
   afterExpanded = () => this.setState({ status: collapseStatus.EXPANDED });
 
-  render() {
+  renderSubTreeViewObject = () => {
     const {
-      treeItem,
       treeItem: {
         children,
-        id,
-        meta: { label, icon, collapsed },
+        meta: { collapsed },
         payload,
-        payload: {
-          indicator,
-          getActiveTreeItemId,
-          getActiveTreeItemIndex,
-          guidelines,
-        },
       },
       density,
       themeData,
@@ -146,7 +139,6 @@ export default class SubTreeViewPresenter extends Component {
       onFocus,
       onMouseEnter,
       onMouseLeave,
-      defaultCollapsed,
       getKeyboardOpenId,
       setKeyboardOpenId,
       setIsCollapsed,
@@ -206,5 +198,90 @@ export default class SubTreeViewPresenter extends Component {
         )}
       </div>
     );
+  };
+
+  renderSubTreeViewPresenter = () => {
+    const {
+      children,
+      collapsed,
+      density,
+      getActiveTreeItemId,
+      getActiveTreeItemIndex,
+      getKeyboardOpenId,
+      getTreeItemArray,
+      guidelines,
+      indicator,
+      setActiveTreeItemId,
+      setActiveTreeItemIndex,
+      setKeyboardOpenId,
+      themeData,
+    } = this.props;
+    const styles = stylesheet(this.props, themeData);
+    const clonedChildren = Array.isArray(children)
+      ? children.map((child) =>
+          React.cloneElement(child, {
+            getActiveTreeItemId,
+            getActiveTreeItemIndex,
+            getKeyboardOpenId,
+            getTreeItemArray,
+            guidelines,
+            indicator,
+            keyboardOpenId: getKeyboardOpenId(),
+            setActiveTreeItemId,
+            setActiveTreeItemIndex,
+            setKeyboardOpenId,
+          })
+        )
+      : React.cloneElement(children, {
+          getActiveTreeItemId,
+          getActiveTreeItemIndex,
+          getKeyboardOpenId,
+          getTreeItemArray,
+          guidelines,
+          keyboardOpenId: getKeyboardOpenId(),
+          indicator,
+          setActiveTreeItemId,
+          setActiveTreeItemIndex,
+          setKeyboardOpenId,
+        });
+    const { status } = this.state;
+    const transitionStyles = this.getTransitionStyles(status);
+
+    return (
+      <div
+        className={cx([
+          css(styles.higTreeItemSubTreeViewWrapper),
+          css(transitionStyles),
+        ])}
+        onTransitionEnd={this.onTransitionEnd}
+        ref={this.setSubTreeWrapperRef}
+      >
+        {(!collapsed || this.state.mount) &&
+          Array.isArray(clonedChildren) && (
+            <ul className={css(styles.higTreeItemSubTreeView)} role="group">
+              {clonedChildren.map((child, index) => (
+                <TreeItem
+                  {...child.props}
+                  themeData={themeData}
+                  density={density}
+                  key={index}
+                />
+              ))}
+            </ul>
+          )}
+        {(!collapsed || this.state.mount) &&
+          !Array.isArray(clonedChildren) && (
+            <ul className={css(styles.higTreeItemSubTreeView)} role="group">
+              {clonedChildren}
+            </ul>
+          )}
+      </div>
+    );
+  };
+
+  render() {
+    return this.props.isObject
+      ? this.renderSubTreeViewObject()
+      : this.renderSubTreeViewPresenter();
   }
 }

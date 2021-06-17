@@ -16,7 +16,6 @@ class TreeObjectView extends Component {
         payload,
         payload: { getActiveTreeItemId, getKeyboardOpenId, setKeyboardOpenId },
         meta: { collapsed },
-        defaultCollapsed,
       },
       ...otherProps
     } = this.props;
