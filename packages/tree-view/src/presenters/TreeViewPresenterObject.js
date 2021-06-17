@@ -22,7 +22,6 @@ export default class TreeViewPresenterObject extends Component {
   };
 
   componentDidMount() {
-    console.log("Im mounted");
     this.getTreeItemArray(this.props.treeNode);
     this.props.setTreeItemArray(objectArray);
   }

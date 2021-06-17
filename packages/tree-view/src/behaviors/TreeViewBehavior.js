@@ -91,7 +91,6 @@ export default class TreeViewBehaviorRR extends Component {
   };
 
   setTreeItemArray = (objectArray) => {
-    console.log("were setting the item array");
     this.setState({ treeItemArray: [...objectArray] });
   };
 
