@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "emotion";
 
-import SubTreeViewCombined from "../FileView/SubTreeViewCombined";
+import SubTreeViewCombined from "./fileview/SubTreeViewCombined";
 import IconIndicatorPresenter from "./IconIndicatorPresenter";
 
 import stylesheet from "./stylesheet";
