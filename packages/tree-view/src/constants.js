@@ -25,7 +25,6 @@ export const FileTreeCollection = {
     label: "Tree Item 1",
     collapsed: false,
     active: false,
-
     icon: <Report24 />,
   },
   children: [
@@ -46,7 +45,6 @@ export const FileTreeCollection = {
             label: "Tree Item 3",
             collapsed: false,
             active: false,
-
             icon: <Calendar24 />,
           },
         },
@@ -57,7 +55,6 @@ export const FileTreeCollection = {
             label: "Tree Item 4",
             collapsed: false,
             active: false,
-
             icon: <FileImage24 />,
           },
         },
@@ -68,7 +65,6 @@ export const FileTreeCollection = {
             label: "Tree Item 5",
             collapsed: false,
             active: false,
-
             icon: <ProductsAndServices24 />,
           },
           children: [
@@ -79,7 +75,6 @@ export const FileTreeCollection = {
                 label: "Tree Item 6",
                 collapsed: false,
                 active: false,
-
                 icon: <AddFolder24 />,
               },
             },
@@ -90,7 +85,6 @@ export const FileTreeCollection = {
                 label: "Tree Item 7",
                 collapsed: false,
                 active: false,
-
                 icon: <Report24 />,
               },
               children: [
@@ -101,7 +95,6 @@ export const FileTreeCollection = {
                     label: "Tree Item 8",
                     collapsed: false,
                     active: false,
-
                     icon: <ProductsAndServices24 />,
                   },
                 },
@@ -112,7 +105,6 @@ export const FileTreeCollection = {
                     label: "Tree Item 9",
                     collapsed: false,
                     active: false,
-
                     icon: <FileImage24 />,
                   },
                 },
@@ -123,7 +115,6 @@ export const FileTreeCollection = {
                     label: "Tree Item 10",
                     collapsed: false,
                     active: false,
-
                     icon: null,
                   },
                 },
@@ -140,7 +131,6 @@ export const FileTreeCollection = {
         label: "Tree Item 11",
         collapsed: false,
         active: false,
-
         icon: <Folder24 />,
       },
       children: [
@@ -151,7 +141,6 @@ export const FileTreeCollection = {
             label: "Tree Item 12",
             collapsed: false,
             active: false,
-
             icon: null,
           },
         },
@@ -162,7 +151,6 @@ export const FileTreeCollection = {
             label: "Tree Item 13",
             collapsed: false,
             active: false,
-
             icon: <FileImage24 />,
           },
         },
@@ -173,7 +161,6 @@ export const FileTreeCollection = {
             label: "Tree Item 14",
             collapsed: false,
             active: false,
-
             icon: <Calendar24 />,
           },
         },
@@ -184,7 +171,6 @@ export const FileTreeCollection = {
             label: "Tree Item 15",
             collapsed: false,
             active: false,
-
             icon: <ProductsAndServices24 />,
           },
           children: [
@@ -195,7 +181,6 @@ export const FileTreeCollection = {
                 label: "Tree Item 16",
                 collapsed: false,
                 active: false,
-
                 icon: <FileVideo24 />,
               },
             },
@@ -206,7 +191,6 @@ export const FileTreeCollection = {
                 label: "Tree Item 17",
                 collapsed: false,
                 active: false,
-
                 icon: <Calendar24 />,
               },
             },
@@ -232,7 +216,6 @@ export const FileTreeCollection = {
         label: "Tree Item 19",
         collapsed: false,
         active: false,
-
         icon: <FileImage24 />,
       },
     },
@@ -243,7 +226,6 @@ export const FileTreeCollection = {
         label: "Tree Item 20",
         collapsed: false,
         active: false,
-
         icon: <Calendar24 />,
       },
     },
