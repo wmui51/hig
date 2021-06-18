@@ -18,6 +18,16 @@ export default class TreeView extends Component {
      * Adds custom/overriding styles
      */
     stylesheet: PropTypes.func,
+    treeNode: PropTypes.shape({
+      id: PropTypes.number,
+      parentId: PropTypes.number,
+      meta: PropTypes.shape({
+        label: PropTypes.string,
+        collapsed: PropTypes.bool,
+        active: PropTypes.bool,
+        icon: PropTypes.elementType,
+      }),
+    }),
   };
 
   static defaultProps = {};
