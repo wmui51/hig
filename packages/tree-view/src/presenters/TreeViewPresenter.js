@@ -22,11 +22,11 @@ function createTreeItems(children) {
   }, []);
 }
 
-function buildTreeItemIdArray(list) {
+function buildTreeItemIdArray(list, isTreeNode) {
   const ids = [];
 
   list.map((item) => {
-    ids.push(item.id);
+    ids.push(isTreeNode ? Number(item.id) : item.id);
   });
 
   return ids;
@@ -57,7 +57,7 @@ export default class TreeViewPresenterObject extends Component {
 
       const treeItemArrayControl =
         this.props.getTreeItemArray().length !== domNodeList.length
-          ? this.buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
+          ? buildTreeItemIdArray(Array.prototype.slice.call(domNodeList), true)
           : this.props.getTreeItemArray();
 
       if (this.props.getTreeItemArray().length !== domNodeList.length) {
@@ -68,7 +68,8 @@ export default class TreeViewPresenterObject extends Component {
       const newTreeArray = buildTreeItemIdArray(
         Array.prototype.slice.call(
           this.props.treeViewRef.querySelectorAll("li")
-        )
+        ),
+        false
       );
 
       if (JSON.stringify(newTreeArray) !== JSON.stringify(currentTreeArray)) {
@@ -76,7 +77,8 @@ export default class TreeViewPresenterObject extends Component {
           buildTreeItemIdArray(
             Array.prototype.slice.call(
               this.props.treeViewRef.querySelectorAll("li")
-            )
+            ),
+            false
           )
         );
       }
@@ -190,16 +192,6 @@ export default class TreeViewPresenterObject extends Component {
         this.getTreeItemArray(child);
       });
     }
-  }
-
-  buildTreeItemIdArray(list) {
-    const ids = [];
-
-    list.map((item) => {
-      ids.push(Number(item.id));
-    });
-
-    return ids;
   }
 
   getTreeObject(collection) {
