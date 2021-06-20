@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { css, cx } from "emotion";
 
 import { NestedSubTreeItem, SubTreeItem } from "./NestedSubTreeItem";
@@ -13,7 +12,7 @@ const collapseStatus = {
   COLLAPSED: "collapsed",
   BEFORE_EXPAND: "before_expand",
   EXPANDING: "expanding",
-  EXPANDED: "expanded",
+  EXPANDED: "expanded"
 };
 
 export default class SubTreeViewObjectPresenter extends Component {
@@ -21,13 +20,13 @@ export default class SubTreeViewObjectPresenter extends Component {
     super(props);
 
     this.subTreeWrapper;
-    this.setSubTreeWrapperRef = (element) => {
+    this.setSubTreeWrapperRef = element => {
       this.subTreeWrapper = element;
     };
 
     this.state = {
       status: collapseStatus.COLLAPSED,
-      mount: false,
+      mount: false
     };
   }
 
@@ -64,11 +63,11 @@ export default class SubTreeViewObjectPresenter extends Component {
 
   getContentHeight = () => `${this.subTreeWrapper.scrollHeight}px`;
 
-  getTransitionStyles = (status) => {
+  getTransitionStyles = status => {
     const defaultCollapsedStyles = {
       height: "0",
       overflow: "visible",
-      visibility: "hidden",
+      visibility: "hidden"
     };
 
     if (status === collapseStatus.EXPANDING) {
@@ -76,7 +75,7 @@ export default class SubTreeViewObjectPresenter extends Component {
         ...defaultCollapsedStyles,
         height: this.getContentHeight(),
         visibility: "visible",
-        overflow: "hidden",
+        overflow: "hidden"
       };
     }
     if (status === collapseStatus.EXPANDED) {
@@ -84,7 +83,7 @@ export default class SubTreeViewObjectPresenter extends Component {
         ...defaultCollapsedStyles,
         height: "auto",
         visibility: "visible",
-        overflow: "visible",
+        overflow: "visible"
       };
     }
     if (status === collapseStatus.BEFORE_COLLAPSE) {
@@ -92,7 +91,7 @@ export default class SubTreeViewObjectPresenter extends Component {
         ...defaultCollapsedStyles,
         height: this.getContentHeight(),
         visibility: "visible",
-        overflow: "visible",
+        overflow: "visible"
       };
     }
     if (status === collapseStatus.COLLAPSING) {
@@ -100,7 +99,7 @@ export default class SubTreeViewObjectPresenter extends Component {
         ...defaultCollapsedStyles,
         height: "0",
         visibility: "visible",
-        overflow: "hidden",
+        overflow: "hidden"
       };
     }
 
@@ -119,7 +118,7 @@ export default class SubTreeViewObjectPresenter extends Component {
   expand = () => {
     this.setState({
       status: collapseStatus.EXPANDING,
-      mount: true,
+      mount: true
     });
   };
 
@@ -131,7 +130,7 @@ export default class SubTreeViewObjectPresenter extends Component {
       treeItem: {
         children,
         meta: { collapsed },
-        payload,
+        payload
       },
       density,
       themeData,
@@ -142,7 +141,7 @@ export default class SubTreeViewObjectPresenter extends Component {
       getKeyboardOpenId,
       setKeyboardOpenId,
       setIsCollapsed,
-      getIsCollapsed,
+      getIsCollapsed
     } = this.props;
     const styles = stylesheet(this.props, themeData);
 
@@ -153,14 +152,14 @@ export default class SubTreeViewObjectPresenter extends Component {
       <div
         className={cx([
           css(styles.higTreeItemSubTreeViewWrapper),
-          css(transitionStyles),
+          css(transitionStyles)
         ])}
         onTransitionEnd={this.onTransitionEnd}
         ref={this.setSubTreeWrapperRef}
       >
         {(!collapsed || this.state.mount) && (
           <ul className={css(styles.higTreeItemSubTreeView)} role="group">
-            {children.map((child) => {
+            {children.map(child => {
               return child.children ? (
                 <NestedSubTreeItem
                   treeItem={{ ...child, payload }}
@@ -214,11 +213,11 @@ export default class SubTreeViewObjectPresenter extends Component {
       setActiveTreeItemId,
       setActiveTreeItemIndex,
       setKeyboardOpenId,
-      themeData,
+      themeData
     } = this.props;
     const styles = stylesheet(this.props, themeData);
     const clonedChildren = Array.isArray(children)
-      ? children.map((child) =>
+      ? children.map(child =>
           React.cloneElement(child, {
             getActiveTreeItemId,
             getActiveTreeItemIndex,
@@ -229,7 +228,7 @@ export default class SubTreeViewObjectPresenter extends Component {
             keyboardOpenId: getKeyboardOpenId(),
             setActiveTreeItemId,
             setActiveTreeItemIndex,
-            setKeyboardOpenId,
+            setKeyboardOpenId
           })
         )
       : React.cloneElement(children, {
@@ -242,7 +241,7 @@ export default class SubTreeViewObjectPresenter extends Component {
           indicator,
           setActiveTreeItemId,
           setActiveTreeItemIndex,
-          setKeyboardOpenId,
+          setKeyboardOpenId
         });
     const { status } = this.state;
     const transitionStyles = this.getTransitionStyles(status);
@@ -251,7 +250,7 @@ export default class SubTreeViewObjectPresenter extends Component {
       <div
         className={cx([
           css(styles.higTreeItemSubTreeViewWrapper),
-          css(transitionStyles),
+          css(transitionStyles)
         ])}
         onTransitionEnd={this.onTransitionEnd}
         ref={this.setSubTreeWrapperRef}
