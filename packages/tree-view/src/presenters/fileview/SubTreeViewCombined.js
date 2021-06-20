@@ -19,7 +19,6 @@ export default class SubTreeViewObjectPresenter extends Component {
   constructor(props) {
     super(props);
 
-    this.subTreeWrapper;
     this.setSubTreeWrapperRef = element => {
       this.subTreeWrapper = element;
     };

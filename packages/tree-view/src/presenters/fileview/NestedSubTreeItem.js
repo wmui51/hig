@@ -20,7 +20,7 @@ export class SubTreeItem extends Component {
         icon: PropTypes.element
       })
     }),
-    keyboardOpenId: PropTypes.number,
+    keyboardOpenId: PropTypes.string,
     themeData: PropTypes.shape({
       fontColor: PropTypes.string
     }),
