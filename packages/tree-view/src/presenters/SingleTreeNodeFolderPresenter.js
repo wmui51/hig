@@ -27,12 +27,14 @@ export default function SingleTreeNodeFolderPresenter(props) {
         onKeyDown={handleKeyDown}
       >
         <div className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}>
-          <IconIndicatorPresenter
-            collapsed={collapsed}
-            density={density}
-            indicator={indicator}
-          />
-          {icon}
+          <div className={css(styles.higTreeItemIndicatorWrapper)}>
+            <IconIndicatorPresenter
+              collapsed={collapsed}
+              density={density}
+              indicator={indicator}
+            />
+          </div>
+          {icon && <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>}
           <span>{label}</span>
         </div>
       </div>
