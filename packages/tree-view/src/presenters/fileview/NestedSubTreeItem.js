@@ -80,8 +80,8 @@ export class SubTreeItem extends Component {
         key={id}
       >
         <div className={css(styles.higTreeItemContentWrapper)}>
-          {icon}
-          {label}
+          {icon && <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>}
+          <span>{label}</span>
         </div>
       </li>
     );
@@ -146,12 +146,14 @@ export class NestedSubTreeItem extends Component {
             className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}
             onClick={event => onClick(event, treeItem)}
           >
-            <IconIndicatorPresenter
-              collapsed={collapsed}
-              density={density}
-              indicator={indicator}
-            />
-            {icon}
+            <div className={css(styles.higTreeItemIndicatorWrapper)}>
+              <IconIndicatorPresenter
+                collapsed={collapsed}
+                density={density}
+                indicator={indicator}
+              />
+            </div>
+            {icon && <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>}
             <span>{label}</span>
           </div>
         </div>

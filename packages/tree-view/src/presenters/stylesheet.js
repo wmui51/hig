@@ -147,6 +147,7 @@ export default function stylesheet(props, themeData) {
         indicator === `caret`
           ? `0 0 0 ${caretPadding}`
           : `0 0 0 ${operatorPadding}` */
+      // paddingLeft: `calc(${itemHeight} + ${themeData["treeView.icon.marginRight"]})`,
       paddingLeft: `calc(${itemHeight} + ${themeData["treeView.icon.marginRight"]})`
     },
     higTreeItemSubTreeViewLabelWrapper: {
@@ -245,6 +246,6 @@ export default function stylesheet(props, themeData) {
       width: itemHeight
     }
   };
-console.log(props.level);
+// console.log(props.level);
   return customStylesheet ? customStylesheet(styles, props, themeData) : styles;
 }
