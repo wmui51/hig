@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { css, cx } from "emotion";
 
-import { NestedSubTreeItem, SubTreeItem } from "./NestedSubTreeItem";
-import TreeItem from "../../TreeItem";
+import { NestedSubTreeItem, SubTreeItem } from "./fileview/NestedSubTreeItem";
+import TreeItem from "../TreeItem";
 
-import stylesheet from "../stylesheet";
+import stylesheet from "./stylesheet";
 
 const collapseStatus = {
   BEFORE_COLLAPSE: "before_collapse",

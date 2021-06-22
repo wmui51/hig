@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { css } from "emotion";
 import { createButtonEventHandlers } from "@hig/utils";
 
-import SubTreeViewCombined from "./fileview/SubTreeViewCombined";
+import SubTreeViewCombined from "./SubTreeViewCombined";
 import IconIndicatorPresenter from "./IconIndicatorPresenter";
 
 import stylesheet from "./stylesheet";

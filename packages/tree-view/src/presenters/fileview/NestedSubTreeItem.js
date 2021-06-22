@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { css } from "emotion";
 
 // import SubTreeViewObjectPresenter from "./SubTreeViewObjectPresenter";
-import SubTreeViewCombined from "./SubTreeViewCombined";
+import SubTreeViewCombined from "../SubTreeViewCombined";
 import IconIndicatorPresenter from "../IconIndicatorPresenter";
 
 import stylesheet from "../stylesheet";
