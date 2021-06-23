@@ -120,8 +120,7 @@ export default class TreeViewPresenterObject extends Component {
       setKeyboardOpenId,
       guidelines,
       indicator,
-      key,
-      level: 1
+      key
     };
 
     return <TreeItem {...payload} />;

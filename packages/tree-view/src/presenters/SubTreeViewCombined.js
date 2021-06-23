@@ -209,7 +209,6 @@ export default class SubTreeViewCombined extends Component {
       getTreeItemArray,
       guidelines,
       indicator,
-      level,
       setActiveTreeItemId,
       setActiveTreeItemIndex,
       setKeyboardOpenId,
@@ -225,7 +224,6 @@ export default class SubTreeViewCombined extends Component {
             getTreeItemArray,
             guidelines,
             indicator,
-            level: Number(level) + 1,
             keyboardOpenId: getKeyboardOpenId(),
             setActiveTreeItemId,
             setActiveTreeItemIndex,
@@ -240,7 +238,6 @@ export default class SubTreeViewCombined extends Component {
           guidelines,
           indicator,
           keyboardOpenId: getKeyboardOpenId(),
-          level: Number(level) + 1,
           setActiveTreeItemId,
           setActiveTreeItemIndex,
           setKeyboardOpenId
