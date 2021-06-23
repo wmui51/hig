@@ -25,6 +25,7 @@ export default function SingleTreeNodeFolderPresenter(props) {
         className={css(styles.higTreeItemSubTreeViewLabelWrapper)}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        role="presentation"
       >
         <div className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}>
           <div className={css(styles.higTreeItemIndicatorWrapper)}>
@@ -34,7 +35,9 @@ export default function SingleTreeNodeFolderPresenter(props) {
               indicator={indicator}
             />
           </div>
-          {icon && <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>}
+          {icon && (
+            <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>
+          )}
           <span>{label}</span>
         </div>
       </div>

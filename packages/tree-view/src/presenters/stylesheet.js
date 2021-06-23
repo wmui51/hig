@@ -7,18 +7,14 @@ export default function stylesheet(props, themeData) {
   const {
     alternateBg,
     guidelines,
-    indicator,
     selected,
     stylesheet: customStylesheet
   } = props;
   const isMediumDensity = themeData[`treeView.row.paddingVertical`] === `8px`;
   const itemHeight = isMediumDensity ? `24px` : `16px`;
   const bgHeight = isMediumDensity ? `160px` : `96px`;
-  // const guideLineVerticalOffsetLeft = isMediumDensity ? `0` : `-3px`;
   const guideLineVerticalOffsetLeft = isMediumDensity ? `-8px` : `-5px`;
   const guideLineHorizontalOffsetTop = isMediumDensity ? `9px` : `2px`;
-  // const operatorPadding = isMediumDensity ? `20px` : `19px`;
-  // const caretPadding = isMediumDensity ? `15px` : `12px`;
   const styles = {
     higTreeViewWrapper: {
       ...(alternateBg
@@ -68,7 +64,6 @@ export default function stylesheet(props, themeData) {
     higTreeItem: {
       margin: 0,
       padding: 0,
-      // paddingLeft: `calc(${itemHeight} + ${themeData["treeView.icon.marginRight"]})`,
       position: `relative`,
       "&::before": {
         ...(guidelines
@@ -85,9 +80,7 @@ export default function stylesheet(props, themeData) {
         position: `absolute`,
         top: guideLineHorizontalOffsetTop,
         transform: `translateY(10px)`,
-        width: isMediumDensity
-          ? `20px`
-          : `12px`
+        width: isMediumDensity ? `20px` : `12px`
       },
       "&::after": {
         ...(guidelines
@@ -123,11 +116,9 @@ export default function stylesheet(props, themeData) {
     higTreeItemContentWrapper: {
       alignItems: `center`,
       display: `inline-flex`,
-      // paddingLeft: themeData[`treeView.row.paddingHorizontal`],
       ...(selected
         ? {
             background: themeData[`colorScheme.background.on.default`],
-            // marginLeft: themeData[`treeView.row.paddingHorizontal`],
             paddingLeft: 0
           }
         : {}),
@@ -143,12 +134,9 @@ export default function stylesheet(props, themeData) {
     higTreeItemSubTreeView: {
       listStyle: `none`,
       margin: 0,
-      /* padding:
-        indicator === `caret`
-          ? `0 0 0 ${caretPadding}`
-          : `0 0 0 ${operatorPadding}` */
-      // paddingLeft: `calc(${itemHeight} + ${themeData["treeView.icon.marginRight"]})`,
-      paddingLeft: `calc(${itemHeight} + ${themeData["treeView.icon.marginRight"]})`
+      paddingLeft: `calc(${itemHeight} + ${
+        themeData["treeView.icon.marginRight"]
+      })`
     },
     higTreeItemSubTreeViewLabelWrapper: {
       display: `flex`,
@@ -177,9 +165,11 @@ export default function stylesheet(props, themeData) {
     higTreeItemSubTreeItem: {
       height: itemHeight,
       padding: `${themeData["treeView.row.paddingVertical"]} ${
-        themeData["treeView.row.paddingHorizontal"]} ${
-        themeData["treeView.row.paddingVertical"]}
-        calc(${itemHeight} + ${themeData["treeView.row.paddingHorizontal"]} + ${themeData["treeView.icon.marginRight"]})`,
+        themeData["treeView.row.paddingHorizontal"]
+      } ${themeData["treeView.row.paddingVertical"]}
+        calc(${itemHeight} + ${themeData["treeView.row.paddingHorizontal"]} + ${
+        themeData["treeView.icon.marginRight"]
+      })`,
       position: `relative`,
       "&::before": {
         ...(guidelines
@@ -246,6 +236,6 @@ export default function stylesheet(props, themeData) {
       width: itemHeight
     }
   };
-// console.log(props.level);
+
   return customStylesheet ? customStylesheet(styles, props, themeData) : styles;
 }

@@ -146,17 +146,7 @@ export default class SubTreeViewCombined extends Component {
 
     const { status } = this.state;
     const transitionStyles = this.getTransitionStyles(status);
-    // temp hack
-    const itemHeight = density === "medium-density" ? "24px" : "16px";
-    const tempObj = {
-      listStyle: `none`,
-      margin: 0,
-      paddingLeft: `calc(${itemHeight} + ${themeData["treeView.icon.marginRight"]})`
-    }
-console.log('ul group');
-console.log(density);
-console.log(styles.higTreeItemSubTreeView);
-    // temp hack
+
     return (
       <div
         className={cx([
@@ -167,7 +157,7 @@ console.log(styles.higTreeItemSubTreeView);
         ref={this.setSubTreeWrapperRef}
       >
         {(!collapsed || this.state.mount) && (
-          <ul className={css(tempObj)} role="group">
+          <ul className={css(styles.higTreeItemSubTreeView)} role="group">
             {children.map(child => {
               return child.children ? (
                 <NestedSubTreeItem
