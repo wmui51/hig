@@ -6,7 +6,9 @@
 export default function stylesheet(props, themeData) {
   const {
     alternateBg,
+    collapsed,
     guidelines,
+    indicator,
     selected,
     stylesheet: customStylesheet
   } = props;
@@ -225,7 +227,13 @@ export default function stylesheet(props, themeData) {
       height: itemHeight,
       justifyContent: `center`,
       marginRight: themeData[`treeView.icon.marginRight`],
-      width: itemHeight
+      width: itemHeight,
+      "& > svg": {
+        ...(!collapsed && indicator === `caret`
+          ? { transform: `rotate(90deg)` }
+          : {}),
+        transition: `transform 0.3s ease-in-out`
+      }
     },
     higTreeItemIconWrapper: {
       alignItems: `center`,

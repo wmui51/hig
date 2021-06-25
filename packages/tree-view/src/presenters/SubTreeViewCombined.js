@@ -128,6 +128,7 @@ export default class SubTreeViewCombined extends Component {
     const {
       treeItem: {
         children,
+        id,
         meta: { collapsed },
         payload
       },
@@ -158,7 +159,7 @@ export default class SubTreeViewCombined extends Component {
       >
         {(!collapsed || this.state.mount) && (
           <ul className={css(styles.higTreeItemSubTreeView)} role="group">
-            {children.map(child => {
+            {children.map((child, index) => {
               return child.children ? (
                 <NestedSubTreeItem
                   treeItem={{ ...child, payload }}
@@ -174,6 +175,7 @@ export default class SubTreeViewCombined extends Component {
                   keyboardOpenId={getKeyboardOpenId()}
                   setIsCollapsed={setIsCollapsed}
                   setKeyboardOpenId={setKeyboardOpenId}
+                  key={`${id}-${index}`}
                 />
               ) : (
                 <SubTreeItem
@@ -189,6 +191,7 @@ export default class SubTreeViewCombined extends Component {
                   keyboardOpenId={getKeyboardOpenId()}
                   setIsCollapsed={setIsCollapsed}
                   setKeyboardOpenId={setKeyboardOpenId}
+                  key={`${id}-${index}`}
                 />
               );
             })}
