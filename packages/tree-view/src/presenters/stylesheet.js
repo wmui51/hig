@@ -227,13 +227,7 @@ export default function stylesheet(props, themeData) {
       height: itemHeight,
       justifyContent: `center`,
       marginRight: themeData[`treeView.icon.marginRight`],
-      width: itemHeight,
-      "& > svg": {
-        ...(!collapsed && indicator === `caret`
-          ? { transform: `rotate(90deg)` }
-          : {}),
-        transition: `transform 0.3s ease-in-out`
-      }
+      width: itemHeight
     },
     higTreeItemIconWrapper: {
       alignItems: `center`,

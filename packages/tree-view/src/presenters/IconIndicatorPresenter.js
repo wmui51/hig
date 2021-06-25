@@ -29,7 +29,7 @@ export default function IconIndicatorPresenter(props) {
     transition: `transform 0.3s ease-in-out`
   });
 
-  return <IconIndicator />;
+  return <IconIndicator stylesheet={customStylesheet} />;
 }
 
 IconIndicatorPresenter.propTypes = {
