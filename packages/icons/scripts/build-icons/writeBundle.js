@@ -10,6 +10,7 @@ function stylize(svgName, width, height) {
     '        height: "' + height + 'px"\n' + 
     '      }\n' +
     '      const propsClone = Object.assign(baseProps, props, { className: cx(css(stylesheet(props, resolvedRoles)), props.className) });\n' +
+    '      if (props.stylesheet) delete propsClone.stylesheet;\n' +
     '      return (\n' +
     `        <${svgName} {...propsClone} />\n` +
     '      );\n' +
@@ -55,6 +56,7 @@ function writeBundle(svgs, filePath) {
     if (svg.size === '16') density = 'information-dense';
     if (svg.size === '24') density = 'regular';
     if (svg.size === 'UI') density = 'ui-controls';
+    if (svg.size === '12') density = 'size12';
     if (!density) throw new Error(`Invalid size: ${svg.size}`);
     const viewBox = findViewBox(svg.data);
     const width = getWidth(viewBox);
