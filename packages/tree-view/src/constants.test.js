@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as constants from "./constants";
 
 describe("button/constants", () => {
