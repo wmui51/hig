@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tree-view/TreeView renders default TreeView 1`] = `
+.emotion-1 {
+  margin: 0;
+}
+
+.emotion-0 {
+  color: #3c3c3c;
+  font-family: ArtifaktElement,sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  list-style: none;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+.emotion-0 > li {
+  padding-left: 0;
+}
+
+.emotion-0 > li > div:first-of-type:last-child {
+  margin: 0 0 0 12px;
+}
+
+.emotion-0 > li::before {
+  border: none;
+}
+
+.emotion-0 > li::after {
+  border: none;
+}
+
+<div
+  className="emotion-1"
+>
+  <ul
+    className="emotion-0"
+    icon={<Report24 />}
+    id="tree-item-18"
+    label="Tree Item 18"
+    onKeyDown={[Function]}
+    role="tree"
+    tabIndex="0"
+  />
+</div>
+`;
