@@ -56,7 +56,7 @@ export default class TreeItemBehavior extends Component {
         treeItemArray !== null && treeItemArray.indexOf(treeItem.id);
       setActiveTreeItemId(treeItem.id);
       setActiveTreeItemIndex(index);
-      this.setIsCollapsed(treeItem.meta.collapsed);
+      this.setIsCollapsed(!this.getIsCollapsed());
     } else {
       const {
         id,

@@ -34,8 +34,8 @@ export class SubTreeItem extends Component {
     } = this.props;
 
     if (keyboardOpenId === id && keyboardOpenId !== previousKeyboardOpenId) {
-      this.props.treeItem.meta.collapsed = !this.props.treeItem.meta.collapsed;
-      this.props.setIsCollapsed(this.props.treeItem.meta.collapsed);
+      // this.props.treeItem.meta.collapsed = !this.props.treeItem.meta.collapsed;
+      this.props.setIsCollapsed(!this.props.getIsCollapsed());
       this.props.setKeyboardOpenId("");
     }
   }
@@ -75,7 +75,7 @@ export class SubTreeItem extends Component {
         id={id}
         role="treeitem"
         onClick={event => onClick(event, treeItem)}
-        key={id}
+        key={`${id}-${Math.ceil(Math.random() * 1000)}`}
       >
         <div className={css(styles.higTreeItemContentWrapper)}>
           {icon && (
@@ -96,8 +96,9 @@ export class NestedSubTreeItem extends Component {
     } = this.props;
 
     if (keyboardOpenId === id && keyboardOpenId !== previousKeyboardOpenId) {
-      this.props.treeItem.meta.collapsed = !this.props.treeItem.meta.collapsed;
-      this.props.setIsCollapsed(this.props.treeItem.meta.collapsed);
+      // this.props.treeItem.meta.collapsed = !this.props.treeItem.meta.collapsed;
+      // 
+      this.props.setIsCollapsed(!this.props.getIsCollapsed());
       this.props.setKeyboardOpenId("");
     }
   }
@@ -140,9 +141,9 @@ export class NestedSubTreeItem extends Component {
         className={css(styles.higTreeItem)}
         id={id}
         role="treeitem"
-        key={id}
+        key={`${id}-${Math.ceil(Math.random() *1000)}`}
       >
-        <div className={css(styles.higTreeItemSubTreeViewLabelWrapper)}>
+        <div className={css(styles.higTreeItemSubTreeViewLabelWrapper)} key={`${id}-${Math.ceil(Math.random() *1000)}`}>
           <div
             className={css(styles.higTreeItemSubTreeViewLabelContentWrapper)}
             onClick={event => onClick(event, treeItem)}

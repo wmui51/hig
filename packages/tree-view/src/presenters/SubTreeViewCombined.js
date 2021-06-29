@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { css, cx } from "emotion";
+import { ThemeContext } from "@hig/theme-context";
+import TreeItemBehavior from "../behaviors/TreeItemBehavior";
 
 import { NestedSubTreeItem, SubTreeItem } from "./fileview/NestedSubTreeItem";
 import TreeItem from "../TreeItem";
@@ -127,20 +129,15 @@ export default class SubTreeViewCombined extends Component {
   renderSubTreeViewObject = () => {
     const {
       treeItem: {
+        id,
         children,
         meta: { collapsed },
         payload
       },
-      density,
       themeData,
-      onClick,
       onFocus,
-      onMouseEnter,
-      onMouseLeave,
       getKeyboardOpenId,
       setKeyboardOpenId,
-      setIsCollapsed,
-      getIsCollapsed
     } = this.props;
     const styles = stylesheet(this.props, themeData);
 
@@ -160,14 +157,31 @@ export default class SubTreeViewCombined extends Component {
           <ul className={css(styles.higTreeItemSubTreeView)} role="group">
             {children.map(child => {
               return child.children ? (
+                <TreeItemBehavior
+        
+        id={id}
+        payload={payload}
+        collapsed={collapsed}
+        defaultCollapsed
+      >
+        {({
+          getIsCollapsed,
+          handleClick,
+          handleMouseEnter,
+          handleMouseLeave,
+          setIsCollapsed
+        }) => (
+          <ThemeContext.Consumer>
+            {({ resolvedRoles, metadata }) => {
+              return (
                 <NestedSubTreeItem
                   treeItem={{ ...child, payload }}
-                  themeData={themeData}
-                  density={density}
-                  onClick={onClick}
+                  themeData={resolvedRoles}
+                  density={metadata.densityId}
+                  onClick={handleClick}
                   onFocus={onFocus}
-                  onMouseEnter={onMouseEnter}
-                  onMouseLeave={onMouseLeave}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   collapsed={getIsCollapsed()}
                   getIsCollapsed={getIsCollapsed}
                   getKeyboardOpenId={getKeyboardOpenId}
@@ -175,14 +189,37 @@ export default class SubTreeViewCombined extends Component {
                   setIsCollapsed={setIsCollapsed}
                   setKeyboardOpenId={setKeyboardOpenId}
                 />
+                );
+            }}
+          </ThemeContext.Consumer>
+        )}
+      </TreeItemBehavior>
               ) : (
+                <TreeItemBehavior
+        
+        id={id}
+        payload={payload}
+        collapsed={collapsed}
+        defaultCollapsed
+      >
+        {({
+          getIsCollapsed,
+          handleClick,
+          handleMouseEnter,
+          handleMouseLeave,
+          setIsCollapsed
+        }) => (
+          <ThemeContext.Consumer>
+            {({ resolvedRoles, metadata }) => {
+              return (
                 <SubTreeItem
                   treeItem={{ ...child, payload }}
-                  themeData={themeData}
-                  onClick={onClick}
+                  themeData={resolvedRoles}
+                  density={metadata.densityId}
+                  onClick={handleClick}
                   onFocus={onFocus}
-                  onMouseEnter={onMouseEnter}
-                  onMouseLeave={onMouseLeave}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   collapsed={getIsCollapsed()}
                   getIsCollapsed={getIsCollapsed}
                   getKeyboardOpenId={getKeyboardOpenId}
@@ -190,6 +227,11 @@ export default class SubTreeViewCombined extends Component {
                   setIsCollapsed={setIsCollapsed}
                   setKeyboardOpenId={setKeyboardOpenId}
                 />
+                );
+            }}
+          </ThemeContext.Consumer>
+        )}
+      </TreeItemBehavior>
               );
             })}
           </ul>
