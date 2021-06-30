@@ -116,11 +116,9 @@ export default class TreeViewBehavior extends Component {
 
     const domNodeList = this.treeViewRef.querySelectorAll("li");
     const treeItemArrayControl =
-      this.getTreeItemArray().length !== domNodeList.length
+      this.getTreeItemArray().length !== domNodeList.length || this.props.treeNode
         ? buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
         : this.getTreeItemArray();
-
-console.log(treeItemArrayControl);
 
     const lowerLimit = 0;
     const upperLimit = treeItemArrayControl.length - 1;
