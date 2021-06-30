@@ -120,6 +120,8 @@ export default class TreeViewBehavior extends Component {
         ? buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
         : this.getTreeItemArray();
 
+console.log(treeItemArrayControl);
+
     const lowerLimit = 0;
     const upperLimit = treeItemArrayControl.length - 1;
 

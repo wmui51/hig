@@ -71,7 +71,7 @@ export default class TreeItemBehavior extends Component {
   };
 
   handleOperatorClick = (event, treeItem) => {
-    // event.stopPropagation();
+    event.stopPropagation();
 console.log(this.props);
 console.log(treeItem);
 console.log(this.getIsCollapsed());
