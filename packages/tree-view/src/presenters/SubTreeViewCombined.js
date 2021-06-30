@@ -133,11 +133,11 @@ export default class SubTreeViewCombined extends Component {
         payload
       },
       density,
+      id,
       themeData,
       onClick,
+      onOperatorClick,
       onFocus,
-      onMouseEnter,
-      onMouseLeave,
       getKeyboardOpenId,
       setKeyboardOpenId,
       setIsCollapsed,
@@ -160,7 +160,7 @@ export default class SubTreeViewCombined extends Component {
         {(!collapsed || this.state.mount) && (
           <ul className={css(styles.higTreeItemSubTreeView)} role="group">
             {children ? 
-              children.map(child => {
+              children.map((child, index) => {
                 return child.children ? (
                   <NestedSubTreeItem
                     treeItem={{ ...child, payload }}
@@ -168,14 +168,14 @@ export default class SubTreeViewCombined extends Component {
                     density={density}
                     onClick={onClick}
                     onFocus={onFocus}
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
+                    onOperatorClick={onOperatorClick}
                     collapsed={getIsCollapsed()}
                     getIsCollapsed={getIsCollapsed}
                     getKeyboardOpenId={getKeyboardOpenId}
                     keyboardOpenId={getKeyboardOpenId()}
                     setIsCollapsed={setIsCollapsed}
                     setKeyboardOpenId={setKeyboardOpenId}
+                    key={`${id}-${index}`}
                   />
                 ) : (
                   <SubTreeItem
@@ -183,14 +183,13 @@ export default class SubTreeViewCombined extends Component {
                     themeData={themeData}
                     onClick={onClick}
                     onFocus={onFocus}
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
                     collapsed={getIsCollapsed()}
                     getIsCollapsed={getIsCollapsed}
                     getKeyboardOpenId={getKeyboardOpenId}
                     keyboardOpenId={getKeyboardOpenId()}
                     setIsCollapsed={setIsCollapsed}
                     setKeyboardOpenId={setKeyboardOpenId}
+                    key={`${id}-${index}`}
                   />
                 );
               }) : null

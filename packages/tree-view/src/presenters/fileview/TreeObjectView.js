@@ -29,8 +29,7 @@ class TreeObjectView extends Component {
         {({
           getIsCollapsed,
           handleClick,
-          handleMouseEnter,
-          handleMouseLeave,
+          handleOperatorClick,
           setIsCollapsed
         }) => (
           <ThemeContext.Consumer>
@@ -43,9 +42,8 @@ class TreeObjectView extends Component {
                       treeItem={this.props.tree}
                       themeData={resolvedRoles}
                       onClick={handleClick}
+                      onOperatorClick={handleOperatorClick}
                       onFocus={onFocus}
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
                       selected={getActiveTreeItemId() === id}
                       collapsed={getIsCollapsed()}
                       getIsCollapsed={getIsCollapsed}
@@ -61,8 +59,6 @@ class TreeObjectView extends Component {
                       themeData={resolvedRoles}
                       onClick={handleClick}
                       onFocus={onFocus}
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
                       selected={getActiveTreeItemId() === id}
                       collapsed={getIsCollapsed()}
                       getIsCollapsed={getIsCollapsed}

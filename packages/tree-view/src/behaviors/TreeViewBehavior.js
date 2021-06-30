@@ -51,7 +51,7 @@ function buildTreeItemIdArray(list) {
   return list.map(item => item.id);
 }
 
-export default class TreeViewBehaviorRR extends Component {
+export default class TreeViewBehavior extends Component {
   static propTypes = {
     children: PropTypes.func,
     onKeyDown: PropTypes.func,

@@ -56,7 +56,7 @@ export default class TreeItem extends Component {
         defaultCollapsed={defaultCollapsed}
         id={id}
       >
-        {({ getIsCollapsed, handleClick, setIsCollapsed }) => (
+        {({ getIsCollapsed, handleClick, handleOperatorClick, setIsCollapsed }) => (
           <TreeItemPresenter
             {...otherProps}
             collapsed={getIsCollapsed()}
@@ -68,6 +68,7 @@ export default class TreeItem extends Component {
             label={label}
             onClick={handleClick}
             onFocus={onFocus}
+            onOperatorClick={handleOperatorClick}
             selected={getActiveTreeItemId() === id}
             setIsCollapsed={setIsCollapsed}
             setKeyboardOpenId={setKeyboardOpenId}
