@@ -11,8 +11,7 @@ class TreeObjectView extends Component {
       tree: {
         id,
         payload,
-        payload: { getActiveTreeItemId, getKeyboardOpenId, setKeyboardOpenId },
-        meta: { collapsed }
+        payload: { getActiveTreeItemId, getKeyboardOpenId, setKeyboardOpenId }
       },
       ...otherProps
     } = this.props;
@@ -23,8 +22,6 @@ class TreeObjectView extends Component {
         {...otherProps}
         id={id}
         payload={payload}
-        collapsed={collapsed}
-        defaultCollapsed
       >
         {({
           getIsCollapsed,
@@ -61,10 +58,10 @@ class TreeObjectView extends Component {
                       onFocus={onFocus}
                       selected={getActiveTreeItemId() === id}
                       collapsed={getIsCollapsed()}
-                      getIsCollapsed={getIsCollapsed}
+                      // getIsCollapsed={getIsCollapsed}
                       getKeyboardOpenId={getKeyboardOpenId}
                       keyboardOpenId={getKeyboardOpenId()}
-                      setIsCollapsed={setIsCollapsed}
+                      // setIsCollapsed={setIsCollapsed}
                       setKeyboardOpenId={setKeyboardOpenId}
                     />
                   )

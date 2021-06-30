@@ -110,7 +110,7 @@ export class NestedSubTreeItem extends Component {
       treeItem: {
         children,
         id,
-        meta: { label, icon, collapsed },
+        meta: { label, icon },
         payload: {
           indicator,
           getActiveTreeItemId,
@@ -118,6 +118,7 @@ export class NestedSubTreeItem extends Component {
           guidelines
         }
       },
+      collapsed,
       density,
       themeData,
       onClick,
