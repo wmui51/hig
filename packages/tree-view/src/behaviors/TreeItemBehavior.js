@@ -21,7 +21,7 @@ export default class TreeItemBehavior extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCollapsed: this.props.defaultCollapsed || false
+      isCollapsed: this.props.defaultCollapsed
     };
   }
 
