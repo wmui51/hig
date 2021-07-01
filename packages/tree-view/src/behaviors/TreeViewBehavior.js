@@ -51,7 +51,7 @@ function buildTreeItemIdArray(list) {
   return list.map(item => item.id);
 }
 
-export default class TreeViewBehaviorRR extends Component {
+export default class TreeViewBehavior extends Component {
   static propTypes = {
     children: PropTypes.func,
     onKeyDown: PropTypes.func,
@@ -116,7 +116,7 @@ export default class TreeViewBehaviorRR extends Component {
 
     const domNodeList = this.treeViewRef.querySelectorAll("li");
     const treeItemArrayControl =
-      this.getTreeItemArray().length !== domNodeList.length
+      this.getTreeItemArray().length !== domNodeList.length || this.props.treeNode
         ? buildTreeItemIdArray(Array.prototype.slice.call(domNodeList))
         : this.getTreeItemArray();
 

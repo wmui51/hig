@@ -10,7 +10,7 @@ import stylesheet from "./stylesheet";
 
 export default function SingleTreeNodeFolderPresenter(props) {
   const { collapsed, icon, id, indicator, label, ...otherProps } = props;
-  const { density, onClick, themeData } = otherProps;
+  const { density, onClick, onOperatorClick, themeData } = otherProps;
   const styles = stylesheet(props, themeData);
   const { handleClick, handleKeyDown } = createButtonEventHandlers(onClick);
 
@@ -33,6 +33,7 @@ export default function SingleTreeNodeFolderPresenter(props) {
               collapsed={collapsed}
               density={density}
               indicator={indicator}
+              onClick={onOperatorClick}
             />
           </div>
           {icon && (

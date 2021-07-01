@@ -12,7 +12,7 @@ import {
 
 export default function IconIndicatorPresenter(props) {
   const { collapsed, indicator, ...otherProps } = props;
-  const { density } = otherProps;
+  const { density, onClick } = otherProps;
   const OperatorMinusIcon =
     density === "medium-density" ? OperatorMinusSUI : OperatorMinusXsUI;
   const OperatorPlusIcon =
@@ -26,10 +26,11 @@ export default function IconIndicatorPresenter(props) {
     ...(!collapsed && indicator === `caret`
       ? { transform: `rotate(90deg)` }
       : {}),
+    cursor: `pointer`,
     transition: `transform 0.3s ease-in-out`
   });
 
-  return <IconIndicator stylesheet={customStylesheet} />;
+  return <IconIndicator stylesheet={customStylesheet} onClick={onClick} />;
 }
 
 IconIndicatorPresenter.propTypes = {

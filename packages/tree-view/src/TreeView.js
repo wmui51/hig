@@ -56,7 +56,7 @@ export default class TreeView extends Component {
     const { onClick, onKeyDown } = otherProps;
 
     return (
-      <TreeViewBehavior {...otherProps} onKeyDown={onKeyDown} onClick={onClick}>
+      <TreeViewBehavior {...otherProps} onKeyDown={onKeyDown} onClick={onClick} treeNode={treeNode}>
         {({
           getActiveTreeItemId,
           getActiveTreeItemIndex,

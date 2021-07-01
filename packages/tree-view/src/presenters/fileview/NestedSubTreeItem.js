@@ -110,7 +110,7 @@ export class NestedSubTreeItem extends Component {
       treeItem: {
         children,
         id,
-        meta: { label, icon, collapsed },
+        meta: { label, icon },
         payload: {
           indicator,
           getActiveTreeItemId,
@@ -118,9 +118,11 @@ export class NestedSubTreeItem extends Component {
           guidelines
         }
       },
+      collapsed,
       density,
       themeData,
-      onClick
+      onClick,
+      onOperatorClick
     } = this.props;
 
     const styleTreeItem = {
@@ -156,6 +158,7 @@ export class NestedSubTreeItem extends Component {
                 collapsed={collapsed}
                 density={density}
                 indicator={indicator}
+                onClick={event => onOperatorClick(event, treeItem)}
               />
             </div>
             {icon && (
