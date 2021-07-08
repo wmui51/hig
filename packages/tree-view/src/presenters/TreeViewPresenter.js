@@ -121,7 +121,7 @@ export default class TreeViewPresenterObject extends Component {
       guidelines,
       indicator,
       key,
-      level: 1
+      level: 0
     };
 
     return <TreeItem {...payload} />;

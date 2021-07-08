@@ -2,13 +2,14 @@ export default function stylesheet(props, themeData) {
   const {
     alternateBg,
     guidelines,
+    level,
     selected,
     stylesheet: customStylesheet
   } = props;
   const isMediumDensity = themeData[`treeView.row.paddingVertical`] === `8px`;
   const itemHeight = isMediumDensity ? `24px` : `16px`;
   const bgHeight = isMediumDensity ? `160px` : `96px`;
-  const guideLineVerticalOffsetLeft = isMediumDensity ? `-8px` : `-5px`;
+  const guideLineVerticalOffsetLeft = isMediumDensity ? `calc(11px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${level - 1}))` : `-5px`;
   const guideLineHorizontalOffsetTop = isMediumDensity ? `9px` : `2px`;
   const styles = {
     higTreeViewWrapper: {
@@ -41,6 +42,9 @@ export default function stylesheet(props, themeData) {
       padding: 0,
       "& > li": {
         paddingLeft: 0,
+        /* paddingLeft: `calc((${itemHeight} + ${
+          themeData["treeView.icon.marginRight"]
+        }) * ${Number(level)})`, */
         "& > div": {
           "&:first-of-type": {
             "&:last-child": {
@@ -70,7 +74,8 @@ export default function stylesheet(props, themeData) {
           : {}),
         display: `inline-block`,
         content: `""`,
-        left: isMediumDensity ? `-7px` : `-4px`,
+        // left: isMediumDensity ? `calc(((${themeData["treeView.row.paddingVertical"]} + ${themeData["treeView.row.paddingHorizontal"]}) * ${level}) + 12px)` : `calc(-4px * ${level})`,
+        left: isMediumDensity ? `calc(12px * ${level})` : `calc(-4px * ${level})`,
         margin: 0,
         position: `absolute`,
         top: guideLineHorizontalOffsetTop,
@@ -129,9 +134,10 @@ export default function stylesheet(props, themeData) {
     higTreeItemSubTreeView: {
       listStyle: `none`,
       margin: 0,
-      paddingLeft: `calc(${itemHeight} + ${
+      paddingLeft: 0
+      /* paddingLeft: `calc(${itemHeight} + ${
         themeData["treeView.icon.marginRight"]
-      })`
+      })` */
     },
     higTreeItemSubTreeViewLabelWrapper: {
       display: `flex`,
@@ -142,7 +148,10 @@ export default function stylesheet(props, themeData) {
         ${themeData["treeView.row.paddingHorizontal"]}`,
       overflow: `hidden`,
       textOverflow: `ellipsis`,
-      whiteSpace: `nowrap`
+      whiteSpace: `nowrap`,
+      paddingLeft: `calc((${itemHeight} + ${
+        themeData["treeView.icon.marginRight"]
+      }) * ${Number(level)})`
     },
     higTreeItemSubTreeViewLabelContentWrapper: {
       alignItems: `center`,
@@ -162,10 +171,13 @@ export default function stylesheet(props, themeData) {
       padding: `${themeData["treeView.row.paddingVertical"]} ${
         themeData["treeView.row.paddingHorizontal"]
       } ${themeData["treeView.row.paddingVertical"]}
-        calc(${itemHeight} + ${themeData["treeView.row.paddingHorizontal"]} + ${
+        calc((${itemHeight} + ${
         themeData["treeView.icon.marginRight"]
-      })`,
+      }) + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${level}))`,
       position: `relative`,
+      /* paddingLeft: `calc((${itemHeight} + ${
+        themeData["treeView.icon.marginRight"]
+      }) * ${Number(level)})`, */
       "&::before": {
         ...(guidelines
           ? {
@@ -176,7 +188,8 @@ export default function stylesheet(props, themeData) {
           : {}),
         display: `inline-block`,
         content: `""`,
-        left: isMediumDensity ? `-7px` : `-4px`,
+        // left: isMediumDensity ? `calc(((${themeData["treeView.row.paddingVertical"]} + ${themeData["treeView.row.paddingHorizontal"]}) * ${level}) + 12px)` : `calc(-4px * ${level})`,
+        left: isMediumDensity ? `calc(12px * ${level})` : `calc(-4px * ${level})`,
         margin: 0,
         position: `absolute`,
         top: guideLineHorizontalOffsetTop,
@@ -231,6 +244,7 @@ export default function stylesheet(props, themeData) {
       width: itemHeight
     }
   };
-
+console.log('stylesheet');
+console.log(level);
   return customStylesheet ? customStylesheet(styles, props, themeData) : styles;
 }
