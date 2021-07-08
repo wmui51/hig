@@ -47,8 +47,10 @@ export default class TreeItem extends Component {
       stylesheet,
       ...otherProps
     } = this.props;
-    const { getActiveTreeItemId, onFocus } = otherProps;
-
+    const { getActiveTreeItemId, level, onFocus } = otherProps;
+console.log('tree item render');
+console.log(id);
+console.log(level);
     return (
       <TreeItemBehavior
         {...otherProps}
