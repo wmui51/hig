@@ -6,10 +6,14 @@ export default function stylesheet(props, themeData) {
     selected,
     stylesheet: customStylesheet
   } = props;
+  const levelOffset = Number(level) - 1;
   const isMediumDensity = themeData[`treeView.row.paddingVertical`] === `8px`;
   const itemHeight = isMediumDensity ? `24px` : `16px`;
   const bgHeight = isMediumDensity ? `160px` : `96px`;
-  const guideLineVerticalOffsetLeft = isMediumDensity ? `calc(11px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${level - 1}))` : `-5px`;
+  // refactor this chunk
+  const guideLineVerticalOffsetLeft = isMediumDensity
+    ? `calc(11px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${levelOffset}))`
+    : `calc(7px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${levelOffset}))`;
   const guideLineHorizontalOffsetTop = isMediumDensity ? `9px` : `2px`;
   const styles = {
     higTreeViewWrapper: {
@@ -41,17 +45,17 @@ export default function stylesheet(props, themeData) {
       outline: 0,
       padding: 0,
       "& > li": {
-        paddingLeft: 0,
+        paddingLeft: themeData["treeView.row.paddingHorizontal"],
         /* paddingLeft: `calc((${itemHeight} + ${
           themeData["treeView.icon.marginRight"]
         }) * ${Number(level)})`, */
-        "& > div": {
+        /* "& > div": {
           "&:first-of-type": {
             "&:last-child": {
               margin: `0 0 0 ${themeData["treeView.row.paddingHorizontal"]}`
             }
           }
-        },
+        }, */
         "&::before": {
           border: `none`
         },
@@ -75,7 +79,9 @@ export default function stylesheet(props, themeData) {
         display: `inline-block`,
         content: `""`,
         // left: isMediumDensity ? `calc(((${themeData["treeView.row.paddingVertical"]} + ${themeData["treeView.row.paddingHorizontal"]}) * ${level}) + 12px)` : `calc(-4px * ${level})`,
-        left: isMediumDensity ? `calc(12px * ${level})` : `calc(-4px * ${level})`,
+        left: isMediumDensity
+          ? `calc((12px * ${Number(level)}) + (20px * ${levelOffset}))`
+          : `calc((8px * ${Number(level)}) + (12px * ${levelOffset}))`,
         margin: 0,
         position: `absolute`,
         top: guideLineHorizontalOffsetTop,
@@ -189,7 +195,9 @@ export default function stylesheet(props, themeData) {
         display: `inline-block`,
         content: `""`,
         // left: isMediumDensity ? `calc(((${themeData["treeView.row.paddingVertical"]} + ${themeData["treeView.row.paddingHorizontal"]}) * ${level}) + 12px)` : `calc(-4px * ${level})`,
-        left: isMediumDensity ? `calc(12px * ${level})` : `calc(-4px * ${level})`,
+        left: isMediumDensity
+          ? `calc((12px * ${Number(level)}) + (20px * ${levelOffset}))`
+          : `calc((8px * ${Number(level)}) + (12px * ${levelOffset}))`,
         margin: 0,
         position: `absolute`,
         top: guideLineHorizontalOffsetTop,
