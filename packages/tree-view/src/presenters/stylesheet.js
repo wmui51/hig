@@ -12,8 +12,8 @@ export default function stylesheet(props, themeData) {
   const bgHeight = isMediumDensity ? `160px` : `96px`;
   // refactor this chunk
   const guideLineVerticalOffsetLeft = isMediumDensity
-    ? `calc(11px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${levelOffset}))`
-    : `calc(7px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${levelOffset}))`;
+    ? `calc(24px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${levelOffset}))`
+    : `calc(15px + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${levelOffset}))`;
   const guideLineHorizontalOffsetTop = isMediumDensity ? `9px` : `2px`;
   const styles = {
     higTreeViewWrapper: {
@@ -45,7 +45,8 @@ export default function stylesheet(props, themeData) {
       outline: 0,
       padding: 0,
       "& > li": {
-        paddingLeft: themeData["treeView.row.paddingHorizontal"],
+        paddingLeft: 0,
+        // paddingLeft: themeData["treeView.row.paddingHorizontal"],
         /* paddingLeft: `calc((${itemHeight} + ${
           themeData["treeView.icon.marginRight"]
         }) * ${Number(level)})`, */
@@ -80,8 +81,8 @@ export default function stylesheet(props, themeData) {
         content: `""`,
         // left: isMediumDensity ? `calc(((${themeData["treeView.row.paddingVertical"]} + ${themeData["treeView.row.paddingHorizontal"]}) * ${level}) + 12px)` : `calc(-4px * ${level})`,
         left: isMediumDensity
-          ? `calc((12px * ${Number(level)}) + (20px * ${levelOffset}))`
-          : `calc((8px * ${Number(level)}) + (12px * ${levelOffset}))`,
+          ? `calc((24px * ${Number(level)}) + (8px * ${levelOffset}))`
+          : `calc((16px * ${Number(level)}) + (4px * ${levelOffset}))`,
         margin: 0,
         position: `absolute`,
         top: guideLineHorizontalOffsetTop,
@@ -122,12 +123,14 @@ export default function stylesheet(props, themeData) {
     higTreeItemContentWrapper: {
       alignItems: `center`,
       display: `inline-flex`,
-      ...(selected
-        ? {
-            background: themeData[`colorScheme.background.on.default`],
-            paddingLeft: 0
-          }
-        : {}),
+      // border: `1px solid blue`,
+      padding: `0 ${themeData["treeView.row.paddingHorizontal"]}`,
+      // ...(selected
+      // ? {
+      //     background: themeData[`colorScheme.background.on.default`],
+      //     paddingLeft: 0
+      //   }
+      // : {}),
       "& > svg": {
         marginRight: themeData[`treeView.icon.marginRight`]
       }
@@ -149,22 +152,34 @@ export default function stylesheet(props, themeData) {
       display: `flex`,
       height: itemHeight,
       lineHeight: itemHeight,
-      maxWidth: `calc(100% - 10px)`,
+      // maxWidth: `calc(100% - 10px)`,
       padding: `${themeData["treeView.row.paddingVertical"]}
-        ${themeData["treeView.row.paddingHorizontal"]}`,
+        ${themeData["treeView.row.paddingHorizontal"]}
+        ${themeData["treeView.row.paddingVertical"]}
+        calc((${itemHeight} + ${
+          themeData["treeView.icon.marginRight"]
+        }) * ${Number(level)})`,
       overflow: `hidden`,
       textOverflow: `ellipsis`,
       whiteSpace: `nowrap`,
-      paddingLeft: `calc((${itemHeight} + ${
+      /* paddingLeft: `calc((${itemHeight} + ${
         themeData["treeView.icon.marginRight"]
-      }) * ${Number(level)})`
+      }) * ${Number(level)})`, */
+      ...(selected
+        ? {
+            background: themeData[`colorScheme.background.on.default`],
+            // paddingLeft: 0
+          }
+        : {}),
     },
     higTreeItemSubTreeViewLabelContentWrapper: {
+      // border: `1px solid red`,
       alignItems: `center`,
       display: `flex`,
-      ...(selected
-        ? { background: themeData[`colorScheme.background.on.default`] }
-        : {}),
+      padding: `0 ${themeData["treeView.row.paddingHorizontal"]}`,
+      // ...(selected
+      //   ? { background: themeData[`colorScheme.background.on.default`] }
+      //   : {}),
       "& > svg": {
         marginRight: themeData[`treeView.icon.marginRight`],
         "&:first-of-type": {
@@ -181,6 +196,12 @@ export default function stylesheet(props, themeData) {
         themeData["treeView.icon.marginRight"]
       }) + ((${itemHeight} + ${themeData["treeView.icon.marginRight"]}) * ${level}))`,
       position: `relative`,
+      ...(selected
+        ? {
+            background: themeData[`colorScheme.background.on.default`],
+            // paddingLeft: 0
+          }
+        : {}),
       /* paddingLeft: `calc((${itemHeight} + ${
         themeData["treeView.icon.marginRight"]
       }) * ${Number(level)})`, */
@@ -196,8 +217,8 @@ export default function stylesheet(props, themeData) {
         content: `""`,
         // left: isMediumDensity ? `calc(((${themeData["treeView.row.paddingVertical"]} + ${themeData["treeView.row.paddingHorizontal"]}) * ${level}) + 12px)` : `calc(-4px * ${level})`,
         left: isMediumDensity
-          ? `calc((12px * ${Number(level)}) + (20px * ${levelOffset}))`
-          : `calc((8px * ${Number(level)}) + (12px * ${levelOffset}))`,
+          ? `calc((24px * ${Number(level)}) + (8px * ${levelOffset}))`
+          : `calc((16px * ${Number(level)}) + (4px * ${levelOffset}))`,
         margin: 0,
         position: `absolute`,
         top: guideLineHorizontalOffsetTop,

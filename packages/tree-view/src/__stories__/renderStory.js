@@ -9,7 +9,7 @@ export default function renderStory(props) {
 
   return (
     <KnobbedThemeProvider>
-      <div style={{ width: "300px" }}>
+      <div style={{ width: "500px" }}>
         <Surface borderRadius="m" shadow="low">
           <TreeView {...otherProps}>{children}</TreeView>
         </Surface>
