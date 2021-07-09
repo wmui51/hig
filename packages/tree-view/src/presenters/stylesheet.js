@@ -122,9 +122,10 @@ export default function stylesheet(props, themeData) {
     },
     higTreeItemContentWrapper: {
       alignItems: `center`,
-      display: `inline-flex`,
+      display: `flex`,
       // border: `1px solid blue`,
       padding: `0 ${themeData["treeView.row.paddingHorizontal"]}`,
+      width: `calc(100% - ${themeData["treeView.row.paddingHorizontal"]})`,
       // ...(selected
       // ? {
       //     background: themeData[`colorScheme.background.on.default`],
@@ -159,9 +160,9 @@ export default function stylesheet(props, themeData) {
         calc((${itemHeight} + ${
           themeData["treeView.icon.marginRight"]
         }) * ${Number(level)})`,
-      overflow: `hidden`,
-      textOverflow: `ellipsis`,
-      whiteSpace: `nowrap`,
+      // overflow: `hidden`,
+      // textOverflow: `ellipsis`,
+      // whiteSpace: `nowrap`,
       /* paddingLeft: `calc((${itemHeight} + ${
         themeData["treeView.icon.marginRight"]
       }) * ${Number(level)})`, */
@@ -177,6 +178,7 @@ export default function stylesheet(props, themeData) {
       alignItems: `center`,
       display: `flex`,
       padding: `0 ${themeData["treeView.row.paddingHorizontal"]}`,
+      width: `calc(100% - ${themeData["treeView.row.paddingHorizontal"]})`,
       // ...(selected
       //   ? { background: themeData[`colorScheme.background.on.default`] }
       //   : {}),
@@ -259,6 +261,7 @@ export default function stylesheet(props, themeData) {
     higTreeItemIndicatorWrapper: {
       alignItems: `center`,
       display: `flex`,
+      flex: `0 0 ${itemHeight}`,
       height: itemHeight,
       justifyContent: `center`,
       marginRight: themeData[`treeView.icon.marginRight`],
@@ -267,10 +270,18 @@ export default function stylesheet(props, themeData) {
     higTreeItemIconWrapper: {
       alignItems: `center`,
       display: `flex`,
+      flex: `0 0 ${itemHeight}`,
       height: itemHeight,
       justifyContent: `center`,
       marginRight: themeData[`treeView.icon.marginRight`],
       width: itemHeight
+    },
+    higTreeItemLabelWrapper: {
+      display: `block`,
+      // flex: `0 0 auto`,
+      overflow: `hidden`,
+      textOverflow: `ellipsis`,
+      whiteSpace: `nowrap`
     }
   };
 console.log('stylesheet');

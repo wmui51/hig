@@ -84,7 +84,7 @@ export class SubTreeItem extends Component {
           {icon && (
             <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>
           )}
-          <span>{label}</span>
+          <span className={css(styles.higTreeItemLabelWrapper)}>{label}</span>
         </div>
       </li>
     );
@@ -164,7 +164,7 @@ export class NestedSubTreeItem extends Component {
             {icon && (
               <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>
             )}
-            <span>{label}</span>
+            <span className={css(styles.higTreeItemLabelWrapper)}>{label}</span>
           </div>
         </div>
         <SubTreeViewCombined {...this.props} isObject />
