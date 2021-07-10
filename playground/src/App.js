@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <div style={{ width: "300px" }}>
         <Surface borderRadius="m" shadow="low">
-          <TreeView gridlines alternateBg>
+          <TreeView guidelines alternateBg>
             <TreeItem
               id="tree-item-18"
               key="tree-item-18"
