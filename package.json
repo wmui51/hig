@@ -36,7 +36,7 @@
   },
   "workspaces": {
     "packages": ["packages/*"],
-    "nohoist": ["acceptance"]
+    "nohoist": ["acceptance", "playground"]
   },
   "jest": {
     "preset": "@hig/jest-preset"
