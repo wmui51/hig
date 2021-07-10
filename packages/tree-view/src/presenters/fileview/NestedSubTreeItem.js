@@ -57,6 +57,7 @@ export class SubTreeItem extends Component {
         }
       },
       themeData,
+      level,
       onClick
     } = this.props;
 
@@ -64,6 +65,7 @@ export class SubTreeItem extends Component {
       children,
       id,
       label,
+      level,
       indicator,
       themeData,
       getActiveTreeItemId,
@@ -121,6 +123,7 @@ export class NestedSubTreeItem extends Component {
       collapsed,
       density,
       themeData,
+      level,
       onClick,
       onOperatorClick
     } = this.props;
@@ -129,6 +132,7 @@ export class NestedSubTreeItem extends Component {
       children,
       id,
       label,
+      level,
       indicator,
       themeData,
       getActiveTreeItemId,

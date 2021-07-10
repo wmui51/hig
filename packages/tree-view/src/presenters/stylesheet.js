@@ -2,6 +2,7 @@ export default function stylesheet(props, themeData) {
   const {
     alternateBg,
     guidelines,
+    id,
     level,
     selected,
     stylesheet: customStylesheet
@@ -284,7 +285,6 @@ export default function stylesheet(props, themeData) {
       whiteSpace: `nowrap`
     }
   };
-console.log('stylesheet');
-console.log(level);
+
   return customStylesheet ? customStylesheet(styles, props, themeData) : styles;
 }
