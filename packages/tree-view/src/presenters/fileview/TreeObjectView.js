@@ -48,6 +48,7 @@ class TreeObjectView extends Component {
                       keyboardOpenId={getKeyboardOpenId()}
                       setIsCollapsed={setIsCollapsed}
                       setKeyboardOpenId={setKeyboardOpenId}
+                      level={0}
                     />
                   ) : (
                     <SubTreeItem
@@ -63,6 +64,7 @@ class TreeObjectView extends Component {
                       keyboardOpenId={getKeyboardOpenId()}
                       // setIsCollapsed={setIsCollapsed}
                       setKeyboardOpenId={setKeyboardOpenId}
+                      level={0}
                     />
                   )
               );

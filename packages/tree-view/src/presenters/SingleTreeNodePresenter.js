@@ -27,7 +27,7 @@ export default function SingleTreeNodePresenter(props) {
         {icon && (
           <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>
         )}
-        <span>{label}</span>
+        <span className={css(styles.higTreeItemLabelWrapper)}>{label}</span>
       </div>
     </li>
   );

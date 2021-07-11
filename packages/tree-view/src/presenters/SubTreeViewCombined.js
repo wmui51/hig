@@ -143,13 +143,10 @@ export default class SubTreeViewCombined extends Component {
       density,
       id,
       themeData,
-      // onClick,
-      // onOperatorClick,
       onFocus,
       getKeyboardOpenId,
-      setKeyboardOpenId
-      // setIsCollapsed,
-      // getIsCollapsed
+      setKeyboardOpenId,
+      level
     } = this.props;
     const styles = stylesheet(this.props, themeData);
 
@@ -194,6 +191,7 @@ export default class SubTreeViewCombined extends Component {
                         setIsCollapsed={setIsCollapsed}
                         setKeyboardOpenId={setKeyboardOpenId}
                         key={`${id}-${index}`}
+                        level={level + 1}
                       />
                     )}
                   </TreeItemBehavior>
@@ -219,6 +217,7 @@ export default class SubTreeViewCombined extends Component {
                         setIsCollapsed={setIsCollapsed}
                         setKeyboardOpenId={setKeyboardOpenId}
                         key={`${id}-${index}`}
+                        level={level + 1}
                       />
                     )}
                   </TreeItemBehavior>
@@ -242,6 +241,7 @@ export default class SubTreeViewCombined extends Component {
       getTreeItemArray,
       guidelines,
       indicator,
+      level,
       setActiveTreeItemId,
       setActiveTreeItemIndex,
       setKeyboardOpenId,
@@ -258,6 +258,7 @@ export default class SubTreeViewCombined extends Component {
             guidelines,
             indicator,
             keyboardOpenId: getKeyboardOpenId(),
+            level: level + 1,
             setActiveTreeItemId,
             setActiveTreeItemIndex,
             setKeyboardOpenId
@@ -271,6 +272,7 @@ export default class SubTreeViewCombined extends Component {
           guidelines,
           indicator,
           keyboardOpenId: getKeyboardOpenId(),
+          level: level + 1,
           setActiveTreeItemId,
           setActiveTreeItemIndex,
           setKeyboardOpenId

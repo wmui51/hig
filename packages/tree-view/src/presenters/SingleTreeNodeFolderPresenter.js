@@ -39,7 +39,7 @@ export default function SingleTreeNodeFolderPresenter(props) {
           {icon && (
             <div className={css(styles.higTreeItemIconWrapper)}>{icon}</div>
           )}
-          <span>{label}</span>
+          <span className={css(styles.higTreeItemLabelWrapper)}>{label}</span>
         </div>
       </div>
       <SubTreeViewCombined {...props} isObject={false} />
