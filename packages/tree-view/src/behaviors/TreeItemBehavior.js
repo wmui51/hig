@@ -71,17 +71,9 @@ export default class TreeItemBehavior extends Component {
   };
 
   handleOperatorClick = (event, treeItem) => {
-    event.stopPropagation();
-console.log(this.props);
-console.log(treeItem);
-console.log(this.getIsCollapsed());
+    // event.stopPropagation();
+
     if (this.props.payload) {
-      console.log('here');
-      console.log(treeItem.meta.collapsed);
-      console.log(this.getIsCollapsed());
-      // eslint-disable-next-line no-param-reassign
-      // treeItem.meta.collapsed = !treeItem.meta.collapsed;
-      // this.setIsCollapsed(treeItem.meta.collapsed);
       this.setIsCollapsed(!this.getIsCollapsed());
     } else {
       this.setIsCollapsed(!this.getIsCollapsed());

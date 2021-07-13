@@ -39,11 +39,7 @@ export default class SubTreeViewCombined extends Component {
   componentDidUpdate(previousProps) {
     const { collapsed: previousCollapsed } = previousProps;
     const { collapsed: currentCollapsed } = this.props;
-    if (this.props.treeItem && this.props.treeItem.id === 2) {
-      console.log(previousProps);
-      console.log('current');
-      console.log(this.props);
-    } 
+
     if (!this.subTreeWrapper) {
       return;
     }
